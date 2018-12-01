@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'CropPickerView_Example' do
+  pod 'CropPickerView', :path => '../'
+
+  target 'CropPickerView_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end

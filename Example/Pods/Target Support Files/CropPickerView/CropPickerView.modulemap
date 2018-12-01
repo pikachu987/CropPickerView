@@ -1,0 +1,6 @@
+framework module CropPickerView {
+  umbrella header "CropPickerView-umbrella.h"
+
+  export *
+  module * { export * }
+}

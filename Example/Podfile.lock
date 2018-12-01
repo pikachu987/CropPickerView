@@ -1,0 +1,16 @@
+PODS:
+  - CropPickerView (0.1.0)
+
+DEPENDENCIES:
+  - CropPickerView (from `../`)
+
+EXTERNAL SOURCES:
+  CropPickerView:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  CropPickerView: cb5b88d00ec3ab1e7ee3fb47a727f10deff18c07
+
+PODFILE CHECKSUM: 46fe1b63c17258e80fca7e0fbffd5e87ecc89329
+
+COCOAPODS: 1.5.3
