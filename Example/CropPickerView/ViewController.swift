@@ -14,12 +14,18 @@ class ViewController: UIViewController {
     @IBOutlet weak var cropPickerView: CropPickerView!
     @IBOutlet weak var imageView: UIImageView!
     
+//    private let cropPickerViewTemp = CropPickerView(frame: CGRect(x: 0, y: 120, width: UIScreen.main.bounds.width, height: 400))
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+//        cropPickerViewTemp.image = UIImage(named: "4.png")
+//        self.view.addSubview(cropPickerViewTemp)
+        
         self.cropPickerView.delegate = self
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(self.cropTap(_:)))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(self.refreshTap(_:)))
     }
 
     override func didReceiveMemoryWarning() {
@@ -37,6 +43,11 @@ class ViewController: UIViewController {
             }
             self.imageView.image = image
         }
+    }
+    
+    @objc func refreshTap(_ sender: UIBarButtonItem) {
+        let image = UIImage(named: "\(Int.random(in: 1...6)).png")
+        self.cropPickerView.image = image
     }
 
 }

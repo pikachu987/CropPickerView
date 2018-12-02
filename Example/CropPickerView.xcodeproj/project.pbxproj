@@ -14,6 +14,10 @@
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
 		9C09B8CF2EDAEADDD24C6CCB /* Pods_CropPickerView_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53633F80BB32EB9BCEEBF4E9 /* Pods_CropPickerView_Tests.framework */; };
+		E0302E9B21B3DC9A00B697F8 /* 5.png in Resources */ = {isa = PBXBuildFile; fileRef = E0302E9721B3DC9900B697F8 /* 5.png */; };
+		E0302E9C21B3DC9A00B697F8 /* 2.png in Resources */ = {isa = PBXBuildFile; fileRef = E0302E9821B3DC9900B697F8 /* 2.png */; };
+		E0302E9D21B3DC9A00B697F8 /* 3.png in Resources */ = {isa = PBXBuildFile; fileRef = E0302E9921B3DC9900B697F8 /* 3.png */; };
+		E0302E9E21B3DC9A00B697F8 /* 4.png in Resources */ = {isa = PBXBuildFile; fileRef = E0302E9A21B3DC9900B697F8 /* 4.png */; };
 		E0C6D97A21B2D7B800D77B93 /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = E0C6D97921B2D7B700D77B93 /* 1.png */; };
 		F435E952D0E1602835426799 /* Pods_CropPickerView_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76EA7B966C513FC7CB17991A /* Pods_CropPickerView_Example.framework */; };
 /* End PBXBuildFile section */
@@ -48,6 +52,10 @@
 		A2E4B07746C106C1FA3E932E /* CropPickerView.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = CropPickerView.podspec; path = ../CropPickerView.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		C10CDC346478C54ADB121933 /* Pods-CropPickerView_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CropPickerView_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CropPickerView_Tests/Pods-CropPickerView_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		D677A2DB30D32513E972FA49 /* Pods-CropPickerView_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CropPickerView_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CropPickerView_Tests/Pods-CropPickerView_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		E0302E9721B3DC9900B697F8 /* 5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 5.png; sourceTree = "<group>"; };
+		E0302E9821B3DC9900B697F8 /* 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2.png; sourceTree = "<group>"; };
+		E0302E9921B3DC9900B697F8 /* 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3.png; sourceTree = "<group>"; };
+		E0302E9A21B3DC9900B697F8 /* 4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 4.png; sourceTree = "<group>"; };
 		E0C6D97921B2D7B700D77B93 /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -109,6 +117,10 @@
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				E0C6D97921B2D7B700D77B93 /* 1.png */,
+				E0302E9821B3DC9900B697F8 /* 2.png */,
+				E0302E9921B3DC9900B697F8 /* 3.png */,
+				E0302E9A21B3DC9900B697F8 /* 4.png */,
+				E0302E9721B3DC9900B697F8 /* 5.png */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
 				607FACD31AFB9204008FA782 /* Supporting Files */,
 			);
@@ -248,9 +260,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E0302E9C21B3DC9A00B697F8 /* 2.png in Resources */,
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
+				E0302E9B21B3DC9A00B697F8 /* 5.png in Resources */,
 				E0C6D97A21B2D7B800D77B93 /* 1.png in Resources */,
+				E0302E9E21B3DC9A00B697F8 /* 4.png in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
+				E0302E9D21B3DC9A00B697F8 /* 3.png in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -42,10 +42,10 @@ class CropView: UIView {
         let view = UIView()
         self.addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false
-        self.addConstraint(NSLayoutConstraint(item: self, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: self.margin))
-        self.addConstraint(NSLayoutConstraint(item: self, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: self.margin))
-        self.addConstraint(NSLayoutConstraint(item: self, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: self.margin))
-        view.addConstraint(NSLayoutConstraint(item: view, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1, constant: self.lineSize))
+        self.addConstraint(NSLayoutConstraint(item: self, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: self.margin).priority(950))
+        self.addConstraint(NSLayoutConstraint(item: self, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: self.margin).priority(950))
+        self.addConstraint(NSLayoutConstraint(item: self, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: self.margin).priority(950))
+        view.addConstraint(NSLayoutConstraint(item: view, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1, constant: self.lineSize).priority(950))
         return view
     }()
     
@@ -53,10 +53,10 @@ class CropView: UIView {
         let view = UIView()
         self.addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false
-        self.addConstraint(NSLayoutConstraint(item: self, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: self.margin))
-        self.addConstraint(NSLayoutConstraint(item: self, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1, constant: self.margin))
-        self.addConstraint(NSLayoutConstraint(item: self, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: self.margin))
-        view.addConstraint(NSLayoutConstraint(item: view, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .width, multiplier: 1, constant: self.lineSize))
+        self.addConstraint(NSLayoutConstraint(item: self, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: self.margin).priority(950))
+        self.addConstraint(NSLayoutConstraint(item: self, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1, constant: self.margin).priority(950))
+        self.addConstraint(NSLayoutConstraint(item: self, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: self.margin).priority(950))
+        view.addConstraint(NSLayoutConstraint(item: view, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .width, multiplier: 1, constant: self.lineSize).priority(950))
         return view
     }()
     
@@ -64,10 +64,10 @@ class CropView: UIView {
         let view = UIView()
         self.addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false
-        self.addConstraint(NSLayoutConstraint(item: self, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: self.margin))
-        self.addConstraint(NSLayoutConstraint(item: self, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: self.margin))
-        self.addConstraint(NSLayoutConstraint(item: self, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: self.margin))
-        view.addConstraint(NSLayoutConstraint(item: view, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1, constant: self.lineSize))
+        self.addConstraint(NSLayoutConstraint(item: self, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: self.margin).priority(950))
+        self.addConstraint(NSLayoutConstraint(item: self, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: self.margin).priority(950))
+        self.addConstraint(NSLayoutConstraint(item: self, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: self.margin).priority(950))
+        view.addConstraint(NSLayoutConstraint(item: view, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1, constant: self.lineSize).priority(950))
         return view
     }()
     
@@ -75,10 +75,10 @@ class CropView: UIView {
         let view = UIView()
         self.addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false
-        self.addConstraint(NSLayoutConstraint(item: self, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: self.margin))
-        self.addConstraint(NSLayoutConstraint(item: self, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1, constant: self.margin))
-        self.addConstraint(NSLayoutConstraint(item: self, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: self.margin))
-        view.addConstraint(NSLayoutConstraint(item: view, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .width, multiplier: 1, constant: self.lineSize))
+        self.addConstraint(NSLayoutConstraint(item: self, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: self.margin).priority(950))
+        self.addConstraint(NSLayoutConstraint(item: self, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1, constant: self.margin).priority(950))
+        self.addConstraint(NSLayoutConstraint(item: self, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: self.margin).priority(950))
+        view.addConstraint(NSLayoutConstraint(item: view, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .width, multiplier: 1, constant: self.lineSize).priority(950))
         return view
     }()
     
@@ -86,10 +86,10 @@ class CropView: UIView {
         let view = UIView()
         self.addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false
-        self.addConstraint(NSLayoutConstraint(item: self.horizontalLeftView, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 0))
-        self.addConstraint(NSLayoutConstraint(item: self.bottomLineView, attribute: .top, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1, constant: 0))
-        self.addConstraint(NSLayoutConstraint(item: self.topLineView, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: 0))
-        view.addConstraint(NSLayoutConstraint(item: view, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .width, multiplier: 1, constant: self.lineSize))
+        self.addConstraint(NSLayoutConstraint(item: self.horizontalLeftView, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 0).priority(950))
+        self.addConstraint(NSLayoutConstraint(item: self.bottomLineView, attribute: .top, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1, constant: 0).priority(950))
+        self.addConstraint(NSLayoutConstraint(item: self.topLineView, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: 0).priority(950))
+        view.addConstraint(NSLayoutConstraint(item: view, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .width, multiplier: 1, constant: self.lineSize).priority(950))
         return view
     }()
     
@@ -97,10 +97,10 @@ class CropView: UIView {
         let view = UIView()
         self.addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false
-        self.addConstraint(NSLayoutConstraint(item: self.horizontalCenterView, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 0))
-        self.addConstraint(NSLayoutConstraint(item: self.bottomLineView, attribute: .top, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1, constant: 0))
-        self.addConstraint(NSLayoutConstraint(item: self.topLineView, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: 0))
-        view.addConstraint(NSLayoutConstraint(item: view, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .width, multiplier: 1, constant: self.lineSize))
+        self.addConstraint(NSLayoutConstraint(item: self.horizontalCenterView, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 0).priority(950))
+        self.addConstraint(NSLayoutConstraint(item: self.bottomLineView, attribute: .top, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1, constant: 0).priority(950))
+        self.addConstraint(NSLayoutConstraint(item: self.topLineView, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: 0).priority(950))
+        view.addConstraint(NSLayoutConstraint(item: view, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .width, multiplier: 1, constant: self.lineSize).priority(950))
         return view
     }()
     
@@ -108,10 +108,10 @@ class CropView: UIView {
         let view = UIView()
         self.addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false
-        self.addConstraint(NSLayoutConstraint(item: self.verticalTopView, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: 0))
-        self.addConstraint(NSLayoutConstraint(item: self.leftLineView, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 0))
-        self.addConstraint(NSLayoutConstraint(item: self.rightLineView, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: 0))
-        view.addConstraint(NSLayoutConstraint(item: view, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1, constant: self.lineSize))
+        self.addConstraint(NSLayoutConstraint(item: self.verticalTopView, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: 0).priority(950))
+        self.addConstraint(NSLayoutConstraint(item: self.leftLineView, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 0).priority(950))
+        self.addConstraint(NSLayoutConstraint(item: self.rightLineView, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: 0).priority(950))
+        view.addConstraint(NSLayoutConstraint(item: view, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1, constant: self.lineSize).priority(950))
         return view
     }()
     
@@ -119,10 +119,10 @@ class CropView: UIView {
         let view = UIView()
         self.addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false
-        self.addConstraint(NSLayoutConstraint(item: self.verticalCenterView, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: 0))
-        self.addConstraint(NSLayoutConstraint(item: self.leftLineView, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 0))
-        self.addConstraint(NSLayoutConstraint(item: self.rightLineView, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: 0))
-        view.addConstraint(NSLayoutConstraint(item: view, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1, constant: self.lineSize))
+        self.addConstraint(NSLayoutConstraint(item: self.verticalCenterView, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: 0).priority(950))
+        self.addConstraint(NSLayoutConstraint(item: self.leftLineView, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 0).priority(950))
+        self.addConstraint(NSLayoutConstraint(item: self.rightLineView, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: 0).priority(950))
+        view.addConstraint(NSLayoutConstraint(item: view, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1, constant: self.lineSize).priority(950))
         return view
     }()
     
@@ -130,9 +130,9 @@ class CropView: UIView {
         let view = UIView()
         self.addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false
-        self.addConstraint(NSLayoutConstraint(item: self.leftLineView, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 0))
-        self.addConstraint(NSLayoutConstraint(item: self.bottomLineView, attribute: .top, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1, constant: 0))
-        self.addConstraint(NSLayoutConstraint(item: self.topLineView, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: 0))
+        self.addConstraint(NSLayoutConstraint(item: self.leftLineView, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 0).priority(950))
+        self.addConstraint(NSLayoutConstraint(item: self.bottomLineView, attribute: .top, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1, constant: 0).priority(950))
+        self.addConstraint(NSLayoutConstraint(item: self.topLineView, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: 0).priority(950))
         return view
     }()
     
@@ -140,10 +140,10 @@ class CropView: UIView {
         let view = UIView()
         self.addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false
-        self.addConstraint(NSLayoutConstraint(item: self.horizontalLeftLineView, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 0))
-        self.addConstraint(NSLayoutConstraint(item: self.bottomLineView, attribute: .top, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1, constant: 0))
-        self.addConstraint(NSLayoutConstraint(item: self.topLineView, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: 0))
-        self.addConstraint(NSLayoutConstraint(item: self.horizontalLeftView, attribute: .width, relatedBy: .equal, toItem: view, attribute: .width, multiplier: 1, constant: 0))
+        self.addConstraint(NSLayoutConstraint(item: self.horizontalLeftLineView, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 0).priority(950))
+        self.addConstraint(NSLayoutConstraint(item: self.bottomLineView, attribute: .top, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1, constant: 0).priority(950))
+        self.addConstraint(NSLayoutConstraint(item: self.topLineView, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: 0).priority(950))
+        self.addConstraint(NSLayoutConstraint(item: self.horizontalLeftView, attribute: .width, relatedBy: .equal, toItem: view, attribute: .width, multiplier: 1, constant: 0).priority(950))
         return view
     }()
     
@@ -151,11 +151,11 @@ class CropView: UIView {
         let view = UIView()
         self.addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false
-        self.addConstraint(NSLayoutConstraint(item: self.horizontalRightLineView, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 0))
-        self.addConstraint(NSLayoutConstraint(item: self.bottomLineView, attribute: .top, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1, constant: 0))
-        self.addConstraint(NSLayoutConstraint(item: self.topLineView, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: 0))
-        self.addConstraint(NSLayoutConstraint(item: self.rightLineView, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: 0))
-        self.addConstraint(NSLayoutConstraint(item: self.horizontalLeftView, attribute: .width, relatedBy: .equal, toItem: view, attribute: .width, multiplier: 1, constant: 0))
+        self.addConstraint(NSLayoutConstraint(item: self.horizontalRightLineView, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 0).priority(950))
+        self.addConstraint(NSLayoutConstraint(item: self.bottomLineView, attribute: .top, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1, constant: 0).priority(950))
+        self.addConstraint(NSLayoutConstraint(item: self.topLineView, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: 0).priority(950))
+        self.addConstraint(NSLayoutConstraint(item: self.rightLineView, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: 0).priority(950))
+        self.addConstraint(NSLayoutConstraint(item: self.horizontalLeftView, attribute: .width, relatedBy: .equal, toItem: view, attribute: .width, multiplier: 1, constant: 0).priority(950))
         return view
     }()
     
@@ -163,9 +163,9 @@ class CropView: UIView {
         let view = UIView()
         self.addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false
-        self.addConstraint(NSLayoutConstraint(item: self.topLineView, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: 0))
-        self.addConstraint(NSLayoutConstraint(item: self.leftLineView, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 0))
-        self.addConstraint(NSLayoutConstraint(item: self.rightLineView, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: 0))
+        self.addConstraint(NSLayoutConstraint(item: self.topLineView, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: 0).priority(950))
+        self.addConstraint(NSLayoutConstraint(item: self.leftLineView, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 0).priority(950))
+        self.addConstraint(NSLayoutConstraint(item: self.rightLineView, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: 0).priority(950))
         return view
     }()
     
@@ -173,10 +173,10 @@ class CropView: UIView {
         let view = UIView()
         self.addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false
-        self.addConstraint(NSLayoutConstraint(item: self.verticalTopLineView, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: 0))
-        self.addConstraint(NSLayoutConstraint(item: self.leftLineView, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 0))
-        self.addConstraint(NSLayoutConstraint(item: self.rightLineView, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: 0))
-        self.addConstraint(NSLayoutConstraint(item: self.verticalTopView, attribute: .height, relatedBy: .equal, toItem: view, attribute: .height, multiplier: 1, constant: 0))
+        self.addConstraint(NSLayoutConstraint(item: self.verticalTopLineView, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: 0).priority(950))
+        self.addConstraint(NSLayoutConstraint(item: self.leftLineView, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 0).priority(950))
+        self.addConstraint(NSLayoutConstraint(item: self.rightLineView, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: 0).priority(950))
+        self.addConstraint(NSLayoutConstraint(item: self.verticalTopView, attribute: .height, relatedBy: .equal, toItem: view, attribute: .height, multiplier: 1, constant: 0).priority(950))
         return view
     }()
     
@@ -184,11 +184,11 @@ class CropView: UIView {
         let view = UIView()
         self.addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false
-        self.addConstraint(NSLayoutConstraint(item: self.verticalBottomLineView, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: 0))
-        self.addConstraint(NSLayoutConstraint(item: self.leftLineView, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 0))
-        self.addConstraint(NSLayoutConstraint(item: self.rightLineView, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: 0))
-        self.addConstraint(NSLayoutConstraint(item: self.verticalTopView, attribute: .height, relatedBy: .equal, toItem: view, attribute: .height, multiplier: 1, constant: 0))
-        self.addConstraint(NSLayoutConstraint(item: self.bottomLineView, attribute: .top, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1, constant: 0))
+        self.addConstraint(NSLayoutConstraint(item: self.verticalBottomLineView, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: 0).priority(950))
+        self.addConstraint(NSLayoutConstraint(item: self.leftLineView, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 0).priority(950))
+        self.addConstraint(NSLayoutConstraint(item: self.rightLineView, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: 0).priority(950))
+        self.addConstraint(NSLayoutConstraint(item: self.verticalTopView, attribute: .height, relatedBy: .equal, toItem: view, attribute: .height, multiplier: 1, constant: 0).priority(950))
+        self.addConstraint(NSLayoutConstraint(item: self.bottomLineView, attribute: .top, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1, constant: 0).priority(950))
         return view
     }()
     

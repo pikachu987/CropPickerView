@@ -48,6 +48,7 @@ public class CropPickerView: UIView {
             } 
             self.cropLineHidden(newValue)
             self.scrollView.layoutIfNeeded()
+            self.dimLayerMask(animated: false)
             DispatchQueue.main.async {
                 self.imageMinAdjustment(animated: false)
             }
@@ -178,10 +179,10 @@ public class CropPickerView: UIView {
         let cropView = CropView()
         self.addSubview(cropView)
         cropView.translatesAutoresizingMaskIntoConstraints = false
-        self.cropLeadingConstraint = self.leadingConstraint(subView: cropView, constant: 0)
-        self.cropTrailingConstraint = self.trailingConstraint(subView: cropView, constant: 0)
-        self.cropTopConstraint = self.topConstraint(subView: cropView, constant: 0)
-        self.cropBottomConstraint = self.bottomConstraint(subView: cropView, constant: 0)
+        self.cropLeadingConstraint = self.leadingConstraint(subView: cropView, constant: 0).priority(945)
+        self.cropTrailingConstraint = self.trailingConstraint(subView: cropView, constant: 0).priority(945)
+        self.cropTopConstraint = self.topConstraint(subView: cropView, constant: 0).priority(945)
+        self.cropBottomConstraint = self.bottomConstraint(subView: cropView, constant: 0).priority(945)
         return cropView
     }()
     

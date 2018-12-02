@@ -9,6 +9,8 @@
 
 The Corner and Side buttons allow you to modify the position of the crop and UIScrollView to zoom the image. If the image is larger than the area of the UIScrollView, the image can be scrolled up and down, left and right, and if the image is smaller than the area of the UIScrollView, the image is always centered.
 
+<img src='./img/2.gif' width='200px'>
+
 <img src='./img/1.gif' width='200px'>
 
 ## Requirements
