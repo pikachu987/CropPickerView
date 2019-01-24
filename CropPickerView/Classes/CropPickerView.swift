@@ -55,6 +55,17 @@ public class CropPickerView: UIView {
         }
     }
     
+    // Set Image
+    @IBInspectable
+    public var changeImage: UIImage? {
+        get {
+            return self.imageView.image
+        }
+        set {
+            self.imageView.image = newValue
+        }
+    }
+    
     // Line color of crop view
     @IBInspectable
     public var cropLineColor: UIColor? {
