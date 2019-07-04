@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'CropPickerView'
-  s.version          = '0.1.2'
+  s.version          = '0.1.3'
   s.summary          = 'View with Crop screen'
 
 # This description is used to generate tags and improve search results.
@@ -32,7 +32,7 @@ The Corner and Side buttons allow you to modify the position of the crop and UIS
 
   s.source_files = 'CropPickerView/Classes/**/*'
   
-  s.swift_version = '4.2'
+  s.swift_version = '5.0'
   
   # s.resource_bundles = {
   #   'CropPickerView' => ['CropPickerView/Assets/*.png']
