@@ -72,7 +72,11 @@ image
 
 ```swift
 
-cropPickerView.image = UIImage(named: "")
+cropPickerView.image = image
+cropPickerView.image(image, crop: CGRect(x: 50, y: 30, width: 100, height: 80), isRealCropRect: false)
+cropPickerView.image(image, crop: CGRect(x: 50, y: 30, width: 100, height: 80), isRealCropRect: true)
+cropPickerView.image(image, isMin: false, crop: CGRect(x: 50, y: 30, width: 100, height: 80), isRealCropRect: true)
+cropPickerView.image(image, isMin: false)
 
 ```
 
@@ -96,6 +100,14 @@ cropPickerView.scrollMaximumZoomScale = 2
 
 ```
 
+cropSize
+
+```swift
+
+cropPickerView.cropMinSize = 200
+
+```
+
 <br><br>
 
 ### Method
@@ -104,7 +116,7 @@ crop
 
 ```swift
 
-cropPickerView.crop { (error, image) in
+cropPickerView.crop { (error, image, crop) in
     if let error = (error as NSError?) {
         let alertController = UIAlertController(title: "Error", message: error.domain, preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
@@ -136,7 +148,7 @@ extension ViewController: CropPickerViewDelegate {
     func cropPickerView(_ cropPickerView: CropPickerView, error: Error) {
 
     }
-    func cropPickerView(_ cropPickerView: CropPickerView, image: UIImage) {
+    func cropPickerView(_ cropPickerView: CropPickerView, image: UIImage, crop: CGRect) {
 
     }
 }
