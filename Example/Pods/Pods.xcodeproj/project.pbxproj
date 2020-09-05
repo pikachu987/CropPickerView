@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		094B922D9B60ECA62BAD8BA07714E321 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A16F4CFC63FAC439D7A04994F579A03 /* Foundation.framework */; };
+		184180ED25037FF700C59266 /* CropResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184180EC25037FF700C59266 /* CropResult.swift */; };
 		185225D124F289ED00F42E69 /* UIImage+fixOrientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185225D024F289ED00F42E69 /* UIImage+fixOrientation.swift */; };
 		2AD33821256394F41B5787FB6A63303A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A16F4CFC63FAC439D7A04994F579A03 /* Foundation.framework */; };
 		417982FEFC8463122E3DE65BA2FA2EDD /* Pods-CropPickerView_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 1209B13C9AD79EFD367A18BFEB6395C0 /* Pods-CropPickerView_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -52,6 +53,7 @@
 		1209B13C9AD79EFD367A18BFEB6395C0 /* Pods-CropPickerView_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-CropPickerView_Example-umbrella.h"; sourceTree = "<group>"; };
 		12E2418BAF00CC5C48F01582A57FAEC9 /* Pods_CropPickerView_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CropPickerView_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		152C1971BF0DB1D06A1C402392C64B83 /* CropPickerView-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CropPickerView-prefix.pch"; sourceTree = "<group>"; };
+		184180EC25037FF700C59266 /* CropResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CropResult.swift; path = CropPickerView/Classes/CropResult.swift; sourceTree = "<group>"; };
 		185225D024F289ED00F42E69 /* UIImage+fixOrientation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIImage+fixOrientation.swift"; path = "CropPickerView/Classes/UIImage+fixOrientation.swift"; sourceTree = "<group>"; };
 		2E14120ACF2EE1C24F397B05A8CEE0EA /* CropPickerView-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "CropPickerView-dummy.m"; sourceTree = "<group>"; };
 		2F242917D3DA52C5098AF98BF08E749A /* Pods-CropPickerView_Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-CropPickerView_Tests-resources.sh"; sourceTree = "<group>"; };
@@ -162,6 +164,7 @@
 		4818A9177CEE9C5357CF7903866E0C9E /* CropPickerView */ = {
 			isa = PBXGroup;
 			children = (
+				184180EC25037FF700C59266 /* CropResult.swift */,
 				90D665A7C6CF02EA6575BC61703F72D9 /* CropPickerView.swift */,
 				5F6FABFCB70EB59FDC54BA103B1D803B /* CropView.swift */,
 				64151F1B2CC508D3E042F38A52A8D5F8 /* CropDimView.swift */,
@@ -368,6 +371,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				184180ED25037FF700C59266 /* CropResult.swift in Sources */,
 				A0B5C2638FCB681CA2CE44184A766D65 /* BezierPath+.swift in Sources */,
 				B1A9897B5F4C74BFE151C5AD875C696D /* CropDimView.swift in Sources */,
 				84CDCC3340C51C9DEE68ED3CD2C4B5E8 /* CropPickerView-dummy.m in Sources */,
@@ -468,7 +472,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MARKETING_VERSION = 0.2.1;
+				MARKETING_VERSION = 0.2.2;
 				MODULEMAP_FILE = "Target Support Files/CropPickerView/CropPickerView.modulemap";
 				PRODUCT_MODULE_NAME = CropPickerView;
 				PRODUCT_NAME = CropPickerView;
@@ -599,7 +603,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MARKETING_VERSION = 0.2.1;
+				MARKETING_VERSION = 0.2.2;
 				MODULEMAP_FILE = "Target Support Files/CropPickerView/CropPickerView.modulemap";
 				PRODUCT_MODULE_NAME = CropPickerView;
 				PRODUCT_NAME = CropPickerView;

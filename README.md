@@ -116,14 +116,14 @@ crop
 
 ```swift
 
-cropPickerView.crop { (error, image, crop) in
-    if let error = (error as NSError?) {
+cropPickerView.crop { (result) in
+    if let error = (result.error as NSError?) {
         let alertController = UIAlertController(title: "Error", message: error.domain, preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
         self.present(alertController, animated: true, completion: nil)
         return
     }
-    self.imageView.image = image
+    self.imageView.image = result.image
 }
 
 ```
@@ -145,10 +145,7 @@ class ViewController: UIViewController{
 
 // MARK: CropPickerViewDelegate
 extension ViewController: CropPickerViewDelegate {
-    func cropPickerView(_ cropPickerView: CropPickerView, error: Error) {
-
-    }
-    func cropPickerView(_ cropPickerView: CropPickerView, image: UIImage, crop: CGRect) {
+    func cropPickerView(_ cropPickerView: CropPickerView, result: CropResult) {
 
     }
 }

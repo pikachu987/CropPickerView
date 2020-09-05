@@ -22,15 +22,12 @@ import UIKit
 
 // CropPickerView Delegate
 public protocol CropPickerViewDelegate: class {
-    // Called when the image is successfully extracted.
-    func cropPickerView(_ cropPickerView: CropPickerView, image: UIImage, crop: CGRect)
-    // Called when an attempt to extract an image fails.
-    func cropPickerView(_ cropPickerView: CropPickerView, error: Error)
+    // Called when the image or error.
+    func cropPickerView(_ cropPickerView: CropPickerView, result: CropResult)
 }
 
 @IBDesignable
 public class CropPickerView: UIView {
-    public typealias Crop = (error: Error?, image: UIImage?, crop: CGRect?)
     public weak var delegate: CropPickerViewDelegate?
     
     // MARK: Public Property
@@ -423,11 +420,11 @@ public class CropPickerView: UIView {
      If there is no image in the crop area, Error 503 is displayed.
      If the image is successfully cropped, the success delegate or callback function is called.
      **/
-    public func crop(_ handler: ((Crop) -> Void)? = nil) {
+    public func crop(_ handler: ((CropResult) -> Void)? = nil) {
         guard let image = self.imageView.image?.fixOrientation else {
-            let error = NSError(domain: "Image is empty.", code: 404, userInfo: nil)
-            handler?((error: error, image: nil, crop: nil))
-            self.delegate?.cropPickerView(self, error: error)
+            let cropResult = CropResult(error: NSError(domain: "Image is empty.", code: 404, userInfo: nil))
+            handler?(cropResult)
+            self.delegate?.cropPickerView(self, result: cropResult)
             return
         }
         
@@ -443,20 +440,45 @@ public class CropPickerView: UIView {
             }
             let scale = 1 / self.scrollView.zoomScale
             let imageFrame = self.imageView.imageFrame
-            let x = (self.scrollView.contentOffset.x + self.cropView.frame.origin.x - imageFrame.origin.x) * scale * factor
-            let y = (self.scrollView.contentOffset.y + self.cropView.frame.origin.y - imageFrame.origin.y) * scale * factor
+
+            let frameX = (self.scrollView.contentOffset.x + self.cropView.frame.origin.x - imageFrame.origin.x)
+            let frameY = (self.scrollView.contentOffset.y + self.cropView.frame.origin.y - imageFrame.origin.y)
+
+            let cropFrameX = frameX > 0 ? frameX : 0
+            let cropFrameY = frameY > 0 ? frameY : 0
+            var cropFrameWidth = self.cropView.frame.size.width
+            if frameX < 0 {
+                cropFrameWidth += frameX
+            }
+            if cropFrameWidth > imageSize.width - cropFrameX {
+                cropFrameWidth = imageSize.width - cropFrameX
+            }
+            var cropFrameHeight = self.cropView.frame.size.height
+            if frameY < 0 {
+                cropFrameHeight += frameY
+            }
+            if cropFrameHeight > imageSize.height - cropFrameY {
+                cropFrameHeight = imageSize.height - cropFrameY
+            }
+            let cropResultFrame = CGRect(x: cropFrameX, y: cropFrameY, width: cropFrameWidth, height: cropFrameHeight)
+            let imageResultSize = CGSize(width: imageFrame.width, height: imageFrame.height)
+
+            let croppingX = frameX * scale * factor
+            let croppingY = frameY * scale * factor
             let width = self.cropView.frame.size.width * scale * factor
             let height = self.cropView.frame.size.height * scale * factor
-            let cropArea = CGRect(x: x, y: y, width: width, height: height)
+            let cropArea = CGRect(x: croppingX, y: croppingY, width: width, height: height)
+
             guard let cropCGImage = image.cgImage?.cropping(to: cropArea),
                 let cropImage = UIImage(cgImage: cropCGImage).fixOrientation else {
-                let error = NSError(domain: "There is no image in the Crop area.", code: 503, userInfo: nil)
-                handler?((error: error, image: nil, crop: cropArea))
-                self.delegate?.cropPickerView(self, error: error)
+                let cropResult = CropResult(error: NSError(domain: "There is no image in the Crop area.", code: 503, userInfo: nil), cropFrame: cropResultFrame, imageSize: imageResultSize)
+                handler?(cropResult)
+                    self.delegate?.cropPickerView(self, result: cropResult)
                 return
             }
-            handler?((error: nil, image: cropImage, crop: cropArea))
-            self.delegate?.cropPickerView(self, image: cropImage, crop: cropArea)
+            let crop = CropResult(image: cropImage, cropFrame: cropResultFrame, imageSize: imageResultSize)
+            handler?(crop)
+            self.delegate?.cropPickerView(self, result: crop)
         }
     }
     

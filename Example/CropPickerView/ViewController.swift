@@ -10,13 +10,67 @@ import UIKit
 import CropPickerView
 
 class ViewController: UIViewController {
+    private let cropPickerView: CropPickerView = {
+        let cropPickerView = CropPickerView()
+        cropPickerView.translatesAutoresizingMaskIntoConstraints = false
+        cropPickerView.backgroundColor = .black
+        return cropPickerView
+    }()
 
-    @IBOutlet weak var cropPickerView: CropPickerView!
-    @IBOutlet weak var imageView: UIImageView!
-    
+    private let imageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = .scaleAspectFit
+        imageView.backgroundColor = .black
+        return imageView
+    }()
+
+    private let descriptionLabel: UILabel = {
+        let descriptionLabel = UILabel()
+        descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
+        descriptionLabel.numberOfLines = 0
+        descriptionLabel.textColor = .black
+        descriptionLabel.font = UIFont.systemFont(ofSize: 13)
+        return descriptionLabel
+    }()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        self.view.addSubview(self.cropPickerView)
+        self.view.addSubview(self.imageView)
+        self.view.addSubview(self.descriptionLabel)
+        
+        var topConstant: CGFloat = UIApplication.shared.statusBarFrame.height
+        if #available(iOS 11.0, *) {
+            topConstant += UIApplication.shared.keyWindow?.safeAreaInsets.top ?? 0
+        }
+        self.view.addConstraints([
+            NSLayoutConstraint(item: self.view!, attribute: .top, relatedBy: .equal, toItem: self.cropPickerView, attribute: .top, multiplier: 1, constant: -topConstant),
+            NSLayoutConstraint(item: self.view!, attribute: .leading, relatedBy: .equal, toItem: self.cropPickerView, attribute: .leading, multiplier: 1, constant: 0),
+            NSLayoutConstraint(item: self.view!, attribute: .trailing, relatedBy: .equal, toItem: self.cropPickerView, attribute: .trailing, multiplier: 1, constant: 0)
+        ])
+        
+        self.cropPickerView.addConstraints([
+            NSLayoutConstraint(item: self.cropPickerView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1, constant: 200)
+        ])
+        
+        self.view.addConstraints([
+            NSLayoutConstraint(item: self.cropPickerView, attribute: .bottom, relatedBy: .equal, toItem: self.imageView, attribute: .top, multiplier: 1, constant: -8),
+            NSLayoutConstraint(item: self.view!, attribute: .leading, relatedBy: .equal, toItem: self.imageView, attribute: .leading, multiplier: 1, constant: 0),
+            NSLayoutConstraint(item: self.view!, attribute: .trailing, relatedBy: .equal, toItem: self.imageView, attribute: .trailing, multiplier: 1, constant: 0)
+        ])
+
+        self.imageView.addConstraints([
+            NSLayoutConstraint(item: self.imageView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1, constant: 200)
+        ])
+
+        self.view.addConstraints([
+            NSLayoutConstraint(item: self.imageView, attribute: .bottom, relatedBy: .equal, toItem: self.descriptionLabel, attribute: .top, multiplier: 1, constant: -8),
+            NSLayoutConstraint(item: self.view!, attribute: .leading, relatedBy: .equal, toItem: self.descriptionLabel, attribute: .leading, multiplier: 1, constant: -8),
+            NSLayoutConstraint(item: self.view!, attribute: .trailing, relatedBy: .equal, toItem: self.descriptionLabel, attribute: .trailing, multiplier: 1, constant: 8)
+        ])
         
         self.cropPickerView.delegate = self
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(self.cropTap(_:)))
@@ -25,6 +79,10 @@ class ViewController: UIViewController {
         button.setTitle("Picture", for: .normal)
         button.addTarget(self, action: #selector(self.albumTap(_:)), for: .touchUpInside)
         self.navigationItem.titleView = button
+    
+        DispatchQueue.main.async {
+            self.cropPickerView.image(UIImage(named: "1.png"))
+        }
         
         //        self.cropPickerView.image = image
         //        self.cropPickerView.image(image, crop: CGRect(x: 50, y: 30, width: 100, height: 80), isRealCropRect: false)
@@ -39,16 +97,16 @@ class ViewController: UIViewController {
     }
     
     @objc func cropTap(_ sender: UIBarButtonItem) {
-        self.cropPickerView.crop { (error, image, crop) in
-            if let error = (error as NSError?) {
+        self.cropPickerView.crop { (crop) in
+            if let error = (crop.error as NSError?) {
                 let alertController = UIAlertController(title: "Error", message: error.domain, preferredStyle: .alert)
                 alertController.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
                 self.present(alertController, animated: true, completion: nil)
                 return
             }
-            self.imageView.image = image
-            if let crop = crop {
-                print("crop: \(crop)")
+            self.imageView.image = crop.image
+            if let cropFrame = crop.cropFrame, let imageSize = crop.imageSize {
+                self.descriptionLabel.text = "-crop frame\n\(cropFrame)\n\n-before image size\n\(imageSize)"
             }
         }
     }
@@ -88,11 +146,8 @@ class ViewController: UIViewController {
 
 // MARK: CropPickerViewDelegate
 extension ViewController: CropPickerViewDelegate {
-    func cropPickerView(_ cropPickerView: CropPickerView, error: Error) {
-        
-    }
-    func cropPickerView(_ cropPickerView: CropPickerView, image: UIImage, crop: CGRect) {
-        
+    func cropPickerView(_ cropPickerView: CropPickerView, result: CropResult) {
+
     }
 }
 
