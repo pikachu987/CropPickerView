@@ -105,8 +105,15 @@ class ViewController: UIViewController {
                 return
             }
             self.imageView.image = crop.image
-            if let cropFrame = crop.cropFrame, let imageSize = crop.imageSize {
-                self.descriptionLabel.text = "-crop frame\n\(cropFrame)\n\n-before image size\n\(imageSize)"
+            self.descriptionLabel.text = ""
+            if let value = crop.cropFrame {
+                self.descriptionLabel.text?.append("\n\n-crop frame\n\(value)")
+            }
+            if let value = crop.realCropFrame {
+                self.descriptionLabel.text?.append("\n\n-real crop frame\n\(value)")
+            }
+            if let value = crop.imageSize {
+                self.descriptionLabel.text?.append("\n\n-before image size\n\(value)")
             }
         }
     }

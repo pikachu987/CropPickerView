@@ -421,8 +421,9 @@ public class CropPickerView: UIView {
      If the image is successfully cropped, the success delegate or callback function is called.
      **/
     public func crop(_ handler: ((CropResult) -> Void)? = nil) {
+        var cropResult = CropResult()
         guard let image = self.imageView.image?.fixOrientation else {
-            let cropResult = CropResult(error: NSError(domain: "Image is empty.", code: 404, userInfo: nil))
+            cropResult.error = NSError(domain: "Image is empty.", code: 404, userInfo: nil)
             handler?(cropResult)
             self.delegate?.cropPickerView(self, result: cropResult)
             return
@@ -443,17 +444,21 @@ public class CropPickerView: UIView {
 
             let frameX = (self.scrollView.contentOffset.x + self.cropView.frame.origin.x - imageFrame.origin.x)
             let frameY = (self.scrollView.contentOffset.y + self.cropView.frame.origin.y - imageFrame.origin.y)
-
+            let frameWidth = self.cropView.frame.size.width
+            let frameHeight = self.cropView.frame.size.height
+            let realCropFrame = CGRect(x: frameX, y: frameY, width: frameWidth, height: frameHeight)
+            cropResult.realCropFrame = realCropFrame
+            
             let cropFrameX = frameX > 0 ? frameX : 0
             let cropFrameY = frameY > 0 ? frameY : 0
-            var cropFrameWidth = self.cropView.frame.size.width
+            var cropFrameWidth = frameWidth
             if frameX < 0 {
                 cropFrameWidth += frameX
             }
             if cropFrameWidth > imageSize.width - cropFrameX {
                 cropFrameWidth = imageSize.width - cropFrameX
             }
-            var cropFrameHeight = self.cropView.frame.size.height
+            var cropFrameHeight = frameHeight
             if frameY < 0 {
                 cropFrameHeight += frameY
             }
@@ -468,17 +473,19 @@ public class CropPickerView: UIView {
             let width = self.cropView.frame.size.width * scale * factor
             let height = self.cropView.frame.size.height * scale * factor
             let cropArea = CGRect(x: croppingX, y: croppingY, width: width, height: height)
-
+            
+            cropResult.cropFrame = cropResultFrame
+            cropResult.imageSize = imageResultSize
             guard let cropCGImage = image.cgImage?.cropping(to: cropArea),
                 let cropImage = UIImage(cgImage: cropCGImage).fixOrientation else {
-                let cropResult = CropResult(error: NSError(domain: "There is no image in the Crop area.", code: 503, userInfo: nil), cropFrame: cropResultFrame, imageSize: imageResultSize)
-                handler?(cropResult)
+                    cropResult.error = NSError(domain: "There is no image in the Crop area.", code: 503, userInfo: nil)
+                    handler?(cropResult)
                     self.delegate?.cropPickerView(self, result: cropResult)
                 return
             }
-            let crop = CropResult(image: cropImage, cropFrame: cropResultFrame, imageSize: imageResultSize)
-            handler?(crop)
-            self.delegate?.cropPickerView(self, result: crop)
+            cropResult.image = cropImage
+            handler?(cropResult)
+            self.delegate?.cropPickerView(self, result: cropResult)
         }
     }
     

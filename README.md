@@ -17,9 +17,13 @@ If you want to see the CropPickerViewController that is created with CropView, s
 
 ### CropPickerView
 
-<img src='./img/2.gif' width='200px'>
+|-|-|
+|---|---|
+|<img src='./img/result1.png' width='200px'>|<img src='./img/result2.png' width='200px'>|
 
-<img src='./img/1.gif' width='200px'>
+|-|-|
+|---|---|
+|<img src='./img/2.gif' width='200px'>|<img src='./img/1.gif' width='200px'>|
 
 ## Requirements
 
