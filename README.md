@@ -1,9 +1,11 @@
 # CropPickerView
 
+[![CI Status](https://img.shields.io/travis/pikachu987/CropPickerView.svg?style=flat)](https://travis-ci.org/pikachu987/CropPickerView)
 [![Version](https://img.shields.io/cocoapods/v/CropPickerView.svg?style=flat)](https://cocoapods.org/pods/CropPickerView)
 [![License](https://img.shields.io/cocoapods/l/CropPickerView.svg?style=flat)](https://cocoapods.org/pods/CropPickerView)
 [![Platform](https://img.shields.io/cocoapods/p/CropPickerView.svg?style=flat)](https://cocoapods.org/pods/CropPickerView)
-[![Swift 5.0](https://img.shields.io/badge/Swift-5.0-orange.svg?style=flat)](https://developer.apple.com/swift/)
+![](https://img.shields.io/badge/Supported-iOS9%20%7C%20OSX%2010.9-4BC51D.svg?style=flat-square)
+![](https://img.shields.io/badge/Swift-5.0-orange.svg?style=flat)
 
 ## Introduce
 

@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		094B922D9B60ECA62BAD8BA07714E321 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A16F4CFC63FAC439D7A04994F579A03 /* Foundation.framework */; };
 		184180ED25037FF700C59266 /* CropResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184180EC25037FF700C59266 /* CropResult.swift */; };
-		185225D124F289ED00F42E69 /* UIImage+fixOrientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185225D024F289ED00F42E69 /* UIImage+fixOrientation.swift */; };
+		185225D124F289ED00F42E69 /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185225D024F289ED00F42E69 /* UIImage.swift */; };
 		2AD33821256394F41B5787FB6A63303A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A16F4CFC63FAC439D7A04994F579A03 /* Foundation.framework */; };
 		417982FEFC8463122E3DE65BA2FA2EDD /* Pods-CropPickerView_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 1209B13C9AD79EFD367A18BFEB6395C0 /* Pods-CropPickerView_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4BC0DEFEE330784FDCA6FEBCB4F2C7E1 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3BE9BB50904E5D580750A7F2AFC3C6 /* UIView+.swift */; };
@@ -54,7 +54,7 @@
 		12E2418BAF00CC5C48F01582A57FAEC9 /* Pods_CropPickerView_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CropPickerView_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		152C1971BF0DB1D06A1C402392C64B83 /* CropPickerView-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CropPickerView-prefix.pch"; sourceTree = "<group>"; };
 		184180EC25037FF700C59266 /* CropResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CropResult.swift; path = CropPickerView/Classes/CropResult.swift; sourceTree = "<group>"; };
-		185225D024F289ED00F42E69 /* UIImage+fixOrientation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIImage+fixOrientation.swift"; path = "CropPickerView/Classes/UIImage+fixOrientation.swift"; sourceTree = "<group>"; };
+		185225D024F289ED00F42E69 /* UIImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIImage.swift; path = CropPickerView/Classes/UIImage.swift; sourceTree = "<group>"; };
 		2E14120ACF2EE1C24F397B05A8CEE0EA /* CropPickerView-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "CropPickerView-dummy.m"; sourceTree = "<group>"; };
 		2F242917D3DA52C5098AF98BF08E749A /* Pods-CropPickerView_Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-CropPickerView_Tests-resources.sh"; sourceTree = "<group>"; };
 		3100DD19E97B3BD3659FD35966287281 /* CropPickerView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CropPickerView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -171,7 +171,7 @@
 				56B93B7D4F4461E19AF0470D58510F58 /* LineButton.swift */,
 				C191EF56E3CEE61251BE22454BD4A5C7 /* BezierPath+.swift */,
 				771DA4B9B7A4F7EA980B80BD415823EF /* UIImageView+.swift */,
-				185225D024F289ED00F42E69 /* UIImage+fixOrientation.swift */,
+				185225D024F289ED00F42E69 /* UIImage.swift */,
 				9C3BE9BB50904E5D580750A7F2AFC3C6 /* UIView+.swift */,
 				E0302E9321B3D8BE00B697F8 /* NSLayoutConstraint+.swift */,
 				230DAD2E8C85556DEDC95785FD05D4D6 /* Pod */,
@@ -378,7 +378,7 @@
 				FFBC36D6E05E585BDBFF84A4C7E78EBE /* CropPickerView.swift in Sources */,
 				C0AFC24B66D02D700C31902A362BB2FA /* CropView.swift in Sources */,
 				5BE581F970EF8BB1FC7E8A04EB7509F0 /* LineButton.swift in Sources */,
-				185225D124F289ED00F42E69 /* UIImage+fixOrientation.swift in Sources */,
+				185225D124F289ED00F42E69 /* UIImage.swift in Sources */,
 				DA3512328B47A73F6DB1C53AADA30433 /* UIImageView+.swift in Sources */,
 				4BC0DEFEE330784FDCA6FEBCB4F2C7E1 /* UIView+.swift in Sources */,
 				E0302E9421B3D8BE00B697F8 /* NSLayoutConstraint+.swift in Sources */,
@@ -435,7 +435,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "Target Support Files/Pods-CropPickerView_Example/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-CropPickerView_Example/Pods-CropPickerView_Example.modulemap";
@@ -470,9 +470,9 @@
 				GCC_PREFIX_HEADER = "Target Support Files/CropPickerView/CropPickerView-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/CropPickerView/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MARKETING_VERSION = 0.2.4;
+				MARKETING_VERSION = 0.2.5;
 				MODULEMAP_FILE = "Target Support Files/CropPickerView/CropPickerView.modulemap";
 				PRODUCT_MODULE_NAME = CropPickerView;
 				PRODUCT_NAME = CropPickerView;
@@ -503,7 +503,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "Target Support Files/Pods-CropPickerView_Tests/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-CropPickerView_Tests/Pods-CropPickerView_Tests.modulemap";
@@ -575,13 +575,16 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_INSTALLED_PRODUCT = NO;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SYMROOT = "${SRCROOT}/../build";
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
 			};
 			name = Debug;
 		};
@@ -601,9 +604,9 @@
 				GCC_PREFIX_HEADER = "Target Support Files/CropPickerView/CropPickerView-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/CropPickerView/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MARKETING_VERSION = 0.2.4;
+				MARKETING_VERSION = 0.2.5;
 				MODULEMAP_FILE = "Target Support Files/CropPickerView/CropPickerView.modulemap";
 				PRODUCT_MODULE_NAME = CropPickerView;
 				PRODUCT_NAME = CropPickerView;
@@ -670,12 +673,15 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_INSTALLED_PRODUCT = NO;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SYMROOT = "${SRCROOT}/../build";
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
 			};
 			name = Release;
 		};
@@ -695,7 +701,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "Target Support Files/Pods-CropPickerView_Tests/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-CropPickerView_Tests/Pods-CropPickerView_Tests.modulemap";
@@ -728,7 +734,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "Target Support Files/Pods-CropPickerView_Example/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-CropPickerView_Example/Pods-CropPickerView_Example.modulemap";
