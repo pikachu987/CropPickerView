@@ -372,6 +372,12 @@ public class CropPickerView: UIView {
         }
     }
 
+    /*
+     image: UIImage
+     isMin: Bool set image after min or max image
+     crop: set image after crop size
+     isRealCropRect: image real crop or image frame crop
+    */
     public func image(_ image: UIImage?, isMin: Bool = true, crop: CGRect? = nil, isRealCropRect: Bool = false) {
         self.imageView.image = image?.fixOrientation
         if isMin {
