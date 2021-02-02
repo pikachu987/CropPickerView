@@ -72,11 +72,26 @@ extension UIImage {
         return UIImage(cgImage: makeImage)
     }
 
-    func crop(_ rect: CGRect, scale: CGFloat = 1) -> UIImage? {
+    func crop(_ rect: CGRect, radius: CGFloat, radiusScale: CGFloat, scale: CGFloat = 1) -> UIImage? {
         UIGraphicsBeginImageContextWithOptions(CGSize(width: rect.size.width / scale, height: rect.size.height / scale), true, 0.0)
         self.draw(at: CGPoint(x: -rect.origin.x / scale, y: -rect.origin.y / scale))
         let croppedImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
-        return croppedImage
+        if radius == 0 {
+            return croppedImage
+        } else {
+            guard let image = croppedImage else { return nil }
+            let imageView = UIImageView(image: image)
+            let layer = imageView.layer
+            layer.masksToBounds = true
+            layer.cornerRadius = radius * radiusScale
+            UIGraphicsBeginImageContext(imageView.bounds.size)
+            if let currentContext = UIGraphicsGetCurrentContext() {
+                layer.render(in: currentContext)
+            }
+            let croppedImage = UIGraphicsGetImageFromCurrentImageContext()
+            UIGraphicsEndImageContext()
+            return croppedImage
+        }
     }
 }

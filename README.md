@@ -19,9 +19,9 @@ If you want to see the CropPickerViewController that is created with CropView, s
 
 ### CropPickerView
 
-|-|-|
-|---|---|
-|<img src='./img/result1.png' width='200px'>|<img src='./img/result2.png' width='200px'>|
+|-|-|-|
+|---|---|---|
+|<img src='./img/result1.png' width='200px'>|<img src='./img/result2.png' width='200px'>|<img src='./img/radius.png' width='200px'>|
 
 |-|-|
 |---|---|
@@ -106,6 +106,14 @@ cropPickerView.scrollMaximumZoomScale = 2
 
 ```
 
+radius
+
+```swift
+
+cropPickerView.radius = 50
+
+```
+
 cropSize
 
 ```swift
@@ -153,6 +161,10 @@ class ViewController: UIViewController{
 extension ViewController: CropPickerViewDelegate {
     func cropPickerView(_ cropPickerView: CropPickerView, result: CropResult) {
 
+    }
+
+    func cropPickerView(_ cropPickerView: CropPickerView, didChange frame: CGRect) {
+        print("frame: \(frame)")
     }
 }
 

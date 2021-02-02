@@ -34,11 +34,21 @@ class ViewController: UIViewController {
         return descriptionLabel
     }()
 
+    private let slider: UISlider = {
+        let slider = UISlider()
+        slider.translatesAutoresizingMaskIntoConstraints = false
+        slider.minimumValue = 0
+        slider.maximumValue = 500
+        slider.value = 0
+        return slider
+    }()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
         self.view.addSubview(self.cropPickerView)
+        self.view.addSubview(self.slider)
         self.view.addSubview(self.imageView)
         self.view.addSubview(self.descriptionLabel)
         
@@ -57,7 +67,13 @@ class ViewController: UIViewController {
         ])
         
         self.view.addConstraints([
-            NSLayoutConstraint(item: self.cropPickerView, attribute: .bottom, relatedBy: .equal, toItem: self.imageView, attribute: .top, multiplier: 1, constant: -8),
+            NSLayoutConstraint(item: self.cropPickerView, attribute: .bottom, relatedBy: .equal, toItem: self.slider, attribute: .top, multiplier: 1, constant: -8),
+            NSLayoutConstraint(item: self.view!, attribute: .leading, relatedBy: .equal, toItem: self.slider, attribute: .leading, multiplier: 1, constant: -20),
+            NSLayoutConstraint(item: self.view!, attribute: .trailing, relatedBy: .equal, toItem: self.slider, attribute: .trailing, multiplier: 1, constant: 20)
+        ])
+        
+        self.view.addConstraints([
+            NSLayoutConstraint(item: self.slider, attribute: .bottom, relatedBy: .equal, toItem: self.imageView, attribute: .top, multiplier: 1, constant: -8),
             NSLayoutConstraint(item: self.view!, attribute: .leading, relatedBy: .equal, toItem: self.imageView, attribute: .leading, multiplier: 1, constant: 0),
             NSLayoutConstraint(item: self.view!, attribute: .trailing, relatedBy: .equal, toItem: self.imageView, attribute: .trailing, multiplier: 1, constant: 0)
         ])
@@ -79,6 +95,8 @@ class ViewController: UIViewController {
         button.setTitle("Picture", for: .normal)
         button.addTarget(self, action: #selector(self.albumTap(_:)), for: .touchUpInside)
         self.navigationItem.titleView = button
+        
+        self.slider.addTarget(self, action: #selector(self.radiusChange(_:)), for: .valueChanged)
     
         DispatchQueue.main.async {
             self.cropPickerView.image(UIImage(named: "1.png"))
@@ -98,14 +116,11 @@ class ViewController: UIViewController {
     
     @objc func cropTap(_ sender: UIBarButtonItem) {
         self.cropPickerView.crop { (crop) in
-            if let error = (crop.error as NSError?) {
-                let alertController = UIAlertController(title: "Error", message: error.domain, preferredStyle: .alert)
-                alertController.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
-                self.present(alertController, animated: true, completion: nil)
-                return
-            }
             self.imageView.image = crop.image
             self.descriptionLabel.text = ""
+            if let error = (crop.error as NSError?) {
+                self.descriptionLabel.text?.append("\n\n-error\n\(error.localizedDescription)(\(error.code))")
+            }
             if let value = crop.cropFrame {
                 self.descriptionLabel.text?.append("\n\n-crop frame\n\(value)")
             }
@@ -148,6 +163,10 @@ class ViewController: UIViewController {
         let image = UIImage(named: "\(Int.random(in: 1...5)).png")
         self.cropPickerView.image(image)
     }
+    
+    @objc func radiusChange(_ sender: UISlider) {
+        self.cropPickerView.radius = CGFloat(sender.value)
+    }
 
 }
 
@@ -155,6 +174,10 @@ class ViewController: UIViewController {
 extension ViewController: CropPickerViewDelegate {
     func cropPickerView(_ cropPickerView: CropPickerView, result: CropResult) {
 
+    }
+
+    func cropPickerView(_ cropPickerView: CropPickerView, didChange frame: CGRect) {
+        print("frame: \(frame)")
     }
 }
 

@@ -24,11 +24,12 @@ import UIKit
 public protocol CropPickerViewDelegate: class {
     // Called when the image or error.
     func cropPickerView(_ cropPickerView: CropPickerView, result: CropResult)
+    func cropPickerView(_ cropPickerView: CropPickerView, didChange frame: CGRect)
 }
+public extension CropPickerViewDelegate {
+    func cropPickerView(_ cropPickerView: CropPickerView, didChange frame: CGRect) {
 
-public enum CropType {
-    case `default`
-    case calculator
+    }
 }
 
 @IBDesignable
@@ -50,7 +51,7 @@ public class CropPickerView: UIView {
             self.scrollView.setZoomScale(1, animated: false)
             if self.scrollView.delegate == nil {
                 self.initVars()
-            } 
+            }
             self.cropLineHidden(image)
             self.scrollView.layoutIfNeeded()
             self.dimLayerMask(animated: false)
@@ -142,6 +143,14 @@ public class CropPickerView: UIView {
         }
         set {
             self.scrollView.maximumZoomScale = newValue
+        }
+    }
+
+    // crop radius
+    @IBInspectable
+    public var radius: CGFloat = 0 {
+        didSet {
+            self.dimLayerMask(animated: false)
         }
     }
 
@@ -431,7 +440,7 @@ public class CropPickerView: UIView {
      If there is no image in the crop area, Error 503 is displayed.
      If the image is successfully cropped, the success delegate or callback function is called.
      **/
-    public func crop(_ cropType: CropType = .default, handler: ((CropResult) -> Void)? = nil) {
+    public func crop(_ handler: ((CropResult) -> Void)? = nil) {
         var cropResult = CropResult()
         guard let image = self.imageView.image?.fixOrientation else {
             cropResult.error = NSError(domain: "Image is empty.", code: 404, userInfo: nil)
@@ -488,28 +497,20 @@ public class CropPickerView: UIView {
             cropResult.cropFrame = cropResultFrame
             cropResult.imageSize = imageResultSize
             
-            if cropType == .default {
-                guard let cropCGImage = image.cgImage?.cropping(to: cropArea),
-                    let cropImage = UIImage(cgImage: cropCGImage).fixOrientation else {
-                        cropResult.error = NSError(domain: "There is no image in the Crop area.", code: 503, userInfo: nil)
-                        handler?(cropResult)
-                        self.delegate?.cropPickerView(self, result: cropResult)
-                    return
-                }
-                cropResult.image = cropImage
+            guard let cropImage = image.crop(cropArea, radius: self.radius, radiusScale: width / self.cropView.frame.size.width)?.fixOrientation else {
+                cropResult.error = NSError(domain: "There is no image in the Crop area.", code: 503, userInfo: nil)
                 handler?(cropResult)
                 self.delegate?.cropPickerView(self, result: cropResult)
-            } else {
-                guard let cropImage = image.crop(cropArea)?.fixOrientation else {
-                    cropResult.error = NSError(domain: "There is no image in the Crop area.", code: 503, userInfo: nil)
-                    handler?(cropResult)
-                    self.delegate?.cropPickerView(self, result: cropResult)
-                    return
-                }
-                cropResult.image = cropImage
-                handler?(cropResult)
-                self.delegate?.cropPickerView(self, result: cropResult)
+                return
             }
+            
+            if image.cgImage?.cropping(to: cropArea) == nil {
+                cropResult.error = NSError(domain: "There is no image in the Crop area.", code: 503, userInfo: nil)
+            }
+            
+            cropResult.image = cropImage
+            handler?(cropResult)
+            self.delegate?.cropPickerView(self, result: cropResult)
         }
     }
     
@@ -832,12 +833,24 @@ extension CropPickerView {
         let height = self.scrollView.bounds.height - (-cropTopConstraint.constant + cropBottomConstraint.constant)
         self.dimView.layoutIfNeeded()
         
-        let path = UIBezierPath(rect: CGRect(
-            x: -cropLeadingConstraint.constant,
-            y: -cropTopConstraint.constant,
-            width: width,
-            height: height
-        ))
+        self.delegate?.cropPickerView(self, didChange: CGRect(x: -cropLeadingConstraint.constant, y: -cropTopConstraint.constant, width: width, height: height))
+
+        let path: UIBezierPath
+        if self.radius == 0 {
+            path = UIBezierPath(rect: CGRect(
+                x: -cropLeadingConstraint.constant,
+                y: -cropTopConstraint.constant,
+                width: width,
+                height: height
+            ))
+        } else {
+            path = UIBezierPath(roundedRect: CGRect(
+                x: -cropLeadingConstraint.constant,
+                y: -cropTopConstraint.constant,
+                width: width,
+                height: height
+            ), cornerRadius: self.radius)
+        }
         path.append(UIBezierPath(rect: self.dimView.bounds))
         
         self.dimView.mask(path.cgPath, duration: duration, animated: animated)
