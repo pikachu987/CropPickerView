@@ -21,7 +21,7 @@
 import UIKit
 
 // Crop LineView
-class CropView: UIView {
+public class CropView: UIView {
     private let margin: CGFloat = 0
     private let lineSize: CGFloat = 1
     
@@ -38,161 +38,91 @@ class CropView: UIView {
         }
     }
     
-    private lazy var topLineView: UIView = {
+    public let topLineView: UIView = {
         let view = UIView()
-        self.addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false
-        self.addConstraint(NSLayoutConstraint(item: self, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: self.margin).priority(950))
-        self.addConstraint(NSLayoutConstraint(item: self, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: self.margin).priority(950))
-        self.addConstraint(NSLayoutConstraint(item: self, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: self.margin).priority(950))
-        view.addConstraint(NSLayoutConstraint(item: view, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1, constant: self.lineSize).priority(950))
         return view
     }()
     
-    private lazy var leftLineView: UIView = {
+    public let leftLineView: UIView = {
         let view = UIView()
-        self.addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false
-        self.addConstraint(NSLayoutConstraint(item: self, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: self.margin).priority(950))
-        self.addConstraint(NSLayoutConstraint(item: self, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1, constant: self.margin).priority(950))
-        self.addConstraint(NSLayoutConstraint(item: self, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: self.margin).priority(950))
-        view.addConstraint(NSLayoutConstraint(item: view, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .width, multiplier: 1, constant: self.lineSize).priority(950))
         return view
     }()
     
-    private lazy var bottomLineView: UIView = {
+    public let bottomLineView: UIView = {
         let view = UIView()
-        self.addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false
-        self.addConstraint(NSLayoutConstraint(item: self, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: self.margin).priority(950))
-        self.addConstraint(NSLayoutConstraint(item: self, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: self.margin).priority(950))
-        self.addConstraint(NSLayoutConstraint(item: self, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: self.margin).priority(950))
-        view.addConstraint(NSLayoutConstraint(item: view, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1, constant: self.lineSize).priority(950))
         return view
     }()
     
-    private lazy var rightLineView: UIView = {
+    public let rightLineView: UIView = {
         let view = UIView()
-        self.addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false
-        self.addConstraint(NSLayoutConstraint(item: self, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: self.margin).priority(950))
-        self.addConstraint(NSLayoutConstraint(item: self, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1, constant: self.margin).priority(950))
-        self.addConstraint(NSLayoutConstraint(item: self, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: self.margin).priority(950))
-        view.addConstraint(NSLayoutConstraint(item: view, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .width, multiplier: 1, constant: self.lineSize).priority(950))
         return view
     }()
     
-    private lazy var horizontalLeftLineView: UIView = {
+    public let horizontalLeftLineView: UIView = {
         let view = UIView()
-        self.addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false
-        self.addConstraint(NSLayoutConstraint(item: self.horizontalLeftView, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 0).priority(950))
-        self.addConstraint(NSLayoutConstraint(item: self.bottomLineView, attribute: .top, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1, constant: 0).priority(950))
-        self.addConstraint(NSLayoutConstraint(item: self.topLineView, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: 0).priority(950))
-        view.addConstraint(NSLayoutConstraint(item: view, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .width, multiplier: 1, constant: self.lineSize).priority(950))
         return view
     }()
     
-    private lazy var horizontalRightLineView: UIView = {
+    public let horizontalRightLineView: UIView = {
         let view = UIView()
-        self.addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false
-        self.addConstraint(NSLayoutConstraint(item: self.horizontalCenterView, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 0).priority(950))
-        self.addConstraint(NSLayoutConstraint(item: self.bottomLineView, attribute: .top, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1, constant: 0).priority(950))
-        self.addConstraint(NSLayoutConstraint(item: self.topLineView, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: 0).priority(950))
-        view.addConstraint(NSLayoutConstraint(item: view, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .width, multiplier: 1, constant: self.lineSize).priority(950))
         return view
     }()
     
-    private lazy var verticalTopLineView: UIView = {
+    public let verticalTopLineView: UIView = {
         let view = UIView()
-        self.addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false
-        self.addConstraint(NSLayoutConstraint(item: self.verticalTopView, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: 0).priority(950))
-        self.addConstraint(NSLayoutConstraint(item: self.leftLineView, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 0).priority(950))
-        self.addConstraint(NSLayoutConstraint(item: self.rightLineView, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: 0).priority(950))
-        view.addConstraint(NSLayoutConstraint(item: view, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1, constant: self.lineSize).priority(950))
         return view
     }()
     
-    private lazy var verticalBottomLineView: UIView = {
+    public let verticalBottomLineView: UIView = {
         let view = UIView()
-        self.addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false
-        self.addConstraint(NSLayoutConstraint(item: self.verticalCenterView, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: 0).priority(950))
-        self.addConstraint(NSLayoutConstraint(item: self.leftLineView, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 0).priority(950))
-        self.addConstraint(NSLayoutConstraint(item: self.rightLineView, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: 0).priority(950))
-        view.addConstraint(NSLayoutConstraint(item: view, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1, constant: self.lineSize).priority(950))
         return view
     }()
     
-    private lazy var horizontalLeftView: UIView = {
+    public let horizontalLeftView: UIView = {
         let view = UIView()
-        self.addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false
-        self.addConstraint(NSLayoutConstraint(item: self.leftLineView, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 0).priority(950))
-        self.addConstraint(NSLayoutConstraint(item: self.bottomLineView, attribute: .top, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1, constant: 0).priority(950))
-        self.addConstraint(NSLayoutConstraint(item: self.topLineView, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: 0).priority(950))
         return view
     }()
     
-    private lazy var horizontalCenterView: UIView = {
+    public let horizontalCenterView: UIView = {
         let view = UIView()
-        self.addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false
-        self.addConstraint(NSLayoutConstraint(item: self.horizontalLeftLineView, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 0).priority(950))
-        self.addConstraint(NSLayoutConstraint(item: self.bottomLineView, attribute: .top, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1, constant: 0).priority(950))
-        self.addConstraint(NSLayoutConstraint(item: self.topLineView, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: 0).priority(950))
-        self.addConstraint(NSLayoutConstraint(item: self.horizontalLeftView, attribute: .width, relatedBy: .equal, toItem: view, attribute: .width, multiplier: 1, constant: 0).priority(950))
         return view
     }()
     
-    private lazy var horizontalRightView: UIView = {
+    public let horizontalRightView: UIView = {
         let view = UIView()
-        self.addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false
-        self.addConstraint(NSLayoutConstraint(item: self.horizontalRightLineView, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 0).priority(950))
-        self.addConstraint(NSLayoutConstraint(item: self.bottomLineView, attribute: .top, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1, constant: 0).priority(950))
-        self.addConstraint(NSLayoutConstraint(item: self.topLineView, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: 0).priority(950))
-        self.addConstraint(NSLayoutConstraint(item: self.rightLineView, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: 0).priority(950))
-        self.addConstraint(NSLayoutConstraint(item: self.horizontalLeftView, attribute: .width, relatedBy: .equal, toItem: view, attribute: .width, multiplier: 1, constant: 0).priority(950))
         return view
     }()
     
-    private lazy var verticalTopView: UIView = {
+    public let verticalTopView: UIView = {
         let view = UIView()
-        self.addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false
-        self.addConstraint(NSLayoutConstraint(item: self.topLineView, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: 0).priority(950))
-        self.addConstraint(NSLayoutConstraint(item: self.leftLineView, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 0).priority(950))
-        self.addConstraint(NSLayoutConstraint(item: self.rightLineView, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: 0).priority(950))
         return view
     }()
     
-    private lazy var verticalCenterView: UIView = {
+    public let verticalCenterView: UIView = {
         let view = UIView()
-        self.addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false
-        self.addConstraint(NSLayoutConstraint(item: self.verticalTopLineView, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: 0).priority(950))
-        self.addConstraint(NSLayoutConstraint(item: self.leftLineView, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 0).priority(950))
-        self.addConstraint(NSLayoutConstraint(item: self.rightLineView, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: 0).priority(950))
-        self.addConstraint(NSLayoutConstraint(item: self.verticalTopView, attribute: .height, relatedBy: .equal, toItem: view, attribute: .height, multiplier: 1, constant: 0).priority(950))
         return view
     }()
     
-    private lazy var verticalBottomView: UIView = {
+    public let verticalBottomView: UIView = {
         let view = UIView()
-        self.addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false
-        self.addConstraint(NSLayoutConstraint(item: self.verticalBottomLineView, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: 0).priority(950))
-        self.addConstraint(NSLayoutConstraint(item: self.leftLineView, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 0).priority(950))
-        self.addConstraint(NSLayoutConstraint(item: self.rightLineView, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: 0).priority(950))
-        self.addConstraint(NSLayoutConstraint(item: self.verticalTopView, attribute: .height, relatedBy: .equal, toItem: view, attribute: .height, multiplier: 1, constant: 0).priority(950))
-        self.addConstraint(NSLayoutConstraint(item: self.bottomLineView, attribute: .top, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1, constant: 0).priority(950))
         return view
     }()
     
-    override func awakeFromNib() {
+    public override func awakeFromNib() {
         super.awakeFromNib()
         
         self.initVars()
@@ -215,6 +145,92 @@ class CropView: UIView {
     }
     
     private func initVars() {
+        
+        self.addSubview(self.topLineView)
+        self.addSubview(self.leftLineView)
+        self.addSubview(self.bottomLineView)
+        self.addSubview(self.rightLineView)
+        self.addSubview(self.horizontalLeftLineView)
+        self.addSubview(self.horizontalRightLineView)
+        self.addSubview(self.verticalTopLineView)
+        self.addSubview(self.verticalBottomLineView)
+        self.addSubview(self.horizontalLeftView)
+        self.addSubview(self.horizontalCenterView)
+        self.addSubview(self.horizontalRightView)
+        self.addSubview(self.verticalTopView)
+        self.addSubview(self.verticalCenterView)
+        self.addSubview(self.verticalBottomView)
+
+        self.addConstraint(NSLayoutConstraint(item: self, attribute: .leading, relatedBy: .equal, toItem: self.topLineView, attribute: .leading, multiplier: 1, constant: self.margin).priority(950))
+        self.addConstraint(NSLayoutConstraint(item: self, attribute: .trailing, relatedBy: .equal, toItem: self.topLineView, attribute: .trailing, multiplier: 1, constant: self.margin).priority(950))
+        self.addConstraint(NSLayoutConstraint(item: self, attribute: .top, relatedBy: .equal, toItem: self.topLineView, attribute: .top, multiplier: 1, constant: self.margin).priority(950))
+        self.topLineView.addConstraint(NSLayoutConstraint(item: self.topLineView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1, constant: self.lineSize).priority(950))
+        
+        self.addConstraint(NSLayoutConstraint(item: self, attribute: .leading, relatedBy: .equal, toItem: self.leftLineView, attribute: .leading, multiplier: 1, constant: self.margin).priority(950))
+        self.addConstraint(NSLayoutConstraint(item: self, attribute: .bottom, relatedBy: .equal, toItem: self.leftLineView, attribute: .bottom, multiplier: 1, constant: self.margin).priority(950))
+        self.addConstraint(NSLayoutConstraint(item: self, attribute: .top, relatedBy: .equal, toItem: self.leftLineView, attribute: .top, multiplier: 1, constant: self.margin).priority(950))
+        self.leftLineView.addConstraint(NSLayoutConstraint(item: self.leftLineView, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .width, multiplier: 1, constant: self.lineSize).priority(950))
+        
+        self.addConstraint(NSLayoutConstraint(item: self, attribute: .leading, relatedBy: .equal, toItem: self.bottomLineView, attribute: .leading, multiplier: 1, constant: self.margin).priority(950))
+        self.addConstraint(NSLayoutConstraint(item: self, attribute: .trailing, relatedBy: .equal, toItem: self.bottomLineView, attribute: .trailing, multiplier: 1, constant: self.margin).priority(950))
+        self.addConstraint(NSLayoutConstraint(item: self, attribute: .bottom, relatedBy: .equal, toItem: self.bottomLineView, attribute: .top, multiplier: 1, constant: self.margin).priority(950))
+        self.bottomLineView.addConstraint(NSLayoutConstraint(item: self.bottomLineView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1, constant: self.lineSize).priority(950))
+        
+        self.addConstraint(NSLayoutConstraint(item: self, attribute: .trailing, relatedBy: .equal, toItem: self.rightLineView, attribute: .trailing, multiplier: 1, constant: self.margin).priority(950))
+        self.addConstraint(NSLayoutConstraint(item: self, attribute: .bottom, relatedBy: .equal, toItem: self.rightLineView, attribute: .bottom, multiplier: 1, constant: self.margin).priority(950))
+        self.addConstraint(NSLayoutConstraint(item: self, attribute: .top, relatedBy: .equal, toItem: self.rightLineView, attribute: .top, multiplier: 1, constant: self.margin).priority(950))
+        self.rightLineView.addConstraint(NSLayoutConstraint(item: self.rightLineView, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .width, multiplier: 1, constant: self.lineSize).priority(950))
+        
+        self.addConstraint(NSLayoutConstraint(item: self.horizontalLeftView, attribute: .trailing, relatedBy: .equal, toItem: self.horizontalLeftLineView, attribute: .leading, multiplier: 1, constant: 0).priority(950))
+        self.addConstraint(NSLayoutConstraint(item: self.bottomLineView, attribute: .top, relatedBy: .equal, toItem: self.horizontalLeftLineView, attribute: .bottom, multiplier: 1, constant: 0).priority(950))
+        self.addConstraint(NSLayoutConstraint(item: self.topLineView, attribute: .bottom, relatedBy: .equal, toItem: self.horizontalLeftLineView, attribute: .top, multiplier: 1, constant: 0).priority(950))
+        self.horizontalLeftLineView.addConstraint(NSLayoutConstraint(item: self.horizontalLeftLineView, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .width, multiplier: 1, constant: self.lineSize).priority(950))
+        
+        self.addConstraint(NSLayoutConstraint(item: self.horizontalCenterView, attribute: .trailing, relatedBy: .equal, toItem: self.horizontalRightLineView, attribute: .leading, multiplier: 1, constant: 0).priority(950))
+        self.addConstraint(NSLayoutConstraint(item: self.bottomLineView, attribute: .top, relatedBy: .equal, toItem: self.horizontalRightLineView, attribute: .bottom, multiplier: 1, constant: 0).priority(950))
+        self.addConstraint(NSLayoutConstraint(item: self.topLineView, attribute: .bottom, relatedBy: .equal, toItem: self.horizontalRightLineView, attribute: .top, multiplier: 1, constant: 0).priority(950))
+        self.horizontalRightLineView.addConstraint(NSLayoutConstraint(item: self.horizontalRightLineView, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .width, multiplier: 1, constant: self.lineSize).priority(950))
+        
+        self.addConstraint(NSLayoutConstraint(item: self.verticalTopView, attribute: .bottom, relatedBy: .equal, toItem: self.verticalTopLineView, attribute: .top, multiplier: 1, constant: 0).priority(950))
+        self.addConstraint(NSLayoutConstraint(item: self.leftLineView, attribute: .trailing, relatedBy: .equal, toItem: self.verticalTopLineView, attribute: .leading, multiplier: 1, constant: 0).priority(950))
+        self.addConstraint(NSLayoutConstraint(item: self.rightLineView, attribute: .leading, relatedBy: .equal, toItem: self.verticalTopLineView, attribute: .trailing, multiplier: 1, constant: 0).priority(950))
+        self.verticalTopLineView.addConstraint(NSLayoutConstraint(item: self.verticalTopLineView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1, constant: self.lineSize).priority(950))
+        
+        self.addConstraint(NSLayoutConstraint(item: self.verticalCenterView, attribute: .bottom, relatedBy: .equal, toItem: self.verticalBottomLineView, attribute: .top, multiplier: 1, constant: 0).priority(950))
+        self.addConstraint(NSLayoutConstraint(item: self.leftLineView, attribute: .trailing, relatedBy: .equal, toItem: self.verticalBottomLineView, attribute: .leading, multiplier: 1, constant: 0).priority(950))
+        self.addConstraint(NSLayoutConstraint(item: self.rightLineView, attribute: .leading, relatedBy: .equal, toItem: self.verticalBottomLineView, attribute: .trailing, multiplier: 1, constant: 0).priority(950))
+        self.verticalBottomLineView.addConstraint(NSLayoutConstraint(item: self.verticalBottomLineView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1, constant: self.lineSize).priority(950))
+        
+        self.addConstraint(NSLayoutConstraint(item: self.leftLineView, attribute: .trailing, relatedBy: .equal, toItem: self.horizontalLeftView, attribute: .leading, multiplier: 1, constant: 0).priority(950))
+        self.addConstraint(NSLayoutConstraint(item: self.bottomLineView, attribute: .top, relatedBy: .equal, toItem: self.horizontalLeftView, attribute: .bottom, multiplier: 1, constant: 0).priority(950))
+        self.addConstraint(NSLayoutConstraint(item: self.topLineView, attribute: .bottom, relatedBy: .equal, toItem: self.horizontalLeftView, attribute: .top, multiplier: 1, constant: 0).priority(950))
+        
+        self.addConstraint(NSLayoutConstraint(item: self.horizontalLeftLineView, attribute: .trailing, relatedBy: .equal, toItem: self.horizontalCenterView, attribute: .leading, multiplier: 1, constant: 0).priority(950))
+        self.addConstraint(NSLayoutConstraint(item: self.bottomLineView, attribute: .top, relatedBy: .equal, toItem: self.horizontalCenterView, attribute: .bottom, multiplier: 1, constant: 0).priority(950))
+        self.addConstraint(NSLayoutConstraint(item: self.topLineView, attribute: .bottom, relatedBy: .equal, toItem: self.horizontalCenterView, attribute: .top, multiplier: 1, constant: 0).priority(950))
+        self.addConstraint(NSLayoutConstraint(item: self.horizontalLeftView, attribute: .width, relatedBy: .equal, toItem: self.horizontalCenterView, attribute: .width, multiplier: 1, constant: 0).priority(950))
+        
+        self.addConstraint(NSLayoutConstraint(item: self.horizontalRightLineView, attribute: .trailing, relatedBy: .equal, toItem: self.horizontalRightView, attribute: .leading, multiplier: 1, constant: 0).priority(950))
+        self.addConstraint(NSLayoutConstraint(item: self.bottomLineView, attribute: .top, relatedBy: .equal, toItem: self.horizontalRightView, attribute: .bottom, multiplier: 1, constant: 0).priority(950))
+        self.addConstraint(NSLayoutConstraint(item: self.topLineView, attribute: .bottom, relatedBy: .equal, toItem: self.horizontalRightView, attribute: .top, multiplier: 1, constant: 0).priority(950))
+        self.addConstraint(NSLayoutConstraint(item: self.rightLineView, attribute: .leading, relatedBy: .equal, toItem: self.horizontalRightView, attribute: .trailing, multiplier: 1, constant: 0).priority(950))
+        self.addConstraint(NSLayoutConstraint(item: self.horizontalLeftView, attribute: .width, relatedBy: .equal, toItem: self.horizontalRightView, attribute: .width, multiplier: 1, constant: 0).priority(950))
+        
+        self.addConstraint(NSLayoutConstraint(item: self.topLineView, attribute: .bottom, relatedBy: .equal, toItem: self.verticalTopView, attribute: .top, multiplier: 1, constant: 0).priority(950))
+        self.addConstraint(NSLayoutConstraint(item: self.leftLineView, attribute: .trailing, relatedBy: .equal, toItem: self.verticalTopView, attribute: .leading, multiplier: 1, constant: 0).priority(950))
+        self.addConstraint(NSLayoutConstraint(item: self.rightLineView, attribute: .leading, relatedBy: .equal, toItem: self.verticalTopView, attribute: .trailing, multiplier: 1, constant: 0).priority(950))
+        
+        self.addConstraint(NSLayoutConstraint(item: self.verticalTopLineView, attribute: .bottom, relatedBy: .equal, toItem: self.verticalCenterView, attribute: .top, multiplier: 1, constant: 0).priority(950))
+        self.addConstraint(NSLayoutConstraint(item: self.leftLineView, attribute: .trailing, relatedBy: .equal, toItem: self.verticalCenterView, attribute: .leading, multiplier: 1, constant: 0).priority(950))
+        self.addConstraint(NSLayoutConstraint(item: self.rightLineView, attribute: .leading, relatedBy: .equal, toItem: self.verticalCenterView, attribute: .trailing, multiplier: 1, constant: 0).priority(950))
+        self.addConstraint(NSLayoutConstraint(item: self.verticalTopView, attribute: .height, relatedBy: .equal, toItem: self.verticalCenterView, attribute: .height, multiplier: 1, constant: 0).priority(950))
+        
+        self.addConstraint(NSLayoutConstraint(item: self.verticalBottomLineView, attribute: .bottom, relatedBy: .equal, toItem: self.verticalBottomView, attribute: .top, multiplier: 1, constant: 0).priority(950))
+        self.addConstraint(NSLayoutConstraint(item: self.leftLineView, attribute: .trailing, relatedBy: .equal, toItem: self.verticalBottomView, attribute: .leading, multiplier: 1, constant: 0).priority(950))
+        self.addConstraint(NSLayoutConstraint(item: self.rightLineView, attribute: .leading, relatedBy: .equal, toItem: self.verticalBottomView, attribute: .trailing, multiplier: 1, constant: 0).priority(950))
+        self.addConstraint(NSLayoutConstraint(item: self.verticalTopView, attribute: .height, relatedBy: .equal, toItem: self.verticalBottomView, attribute: .height, multiplier: 1, constant: 0).priority(950))
+        self.addConstraint(NSLayoutConstraint(item: self.bottomLineView, attribute: .top, relatedBy: .equal, toItem: self.verticalBottomView, attribute: .bottom, multiplier: 1, constant: 0).priority(950))
+        
         self.isUserInteractionEnabled = false
         self.backgroundColor = .clear
         self.topLineView.alpha = 1

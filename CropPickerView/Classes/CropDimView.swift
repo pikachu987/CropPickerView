@@ -21,7 +21,7 @@
 import UIKit
 
 // CropDimView
-class CropDimView: UIView {
+public class CropDimView: UIView {
     private var path: CGPath?
     
     init() {

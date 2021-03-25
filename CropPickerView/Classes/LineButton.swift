@@ -26,12 +26,12 @@ protocol LineButtonDelegate: class {
 }
 
 // Side, Edge LineButton
-class LineButton: UIButton {
+public class LineButton: UIButton {
     weak var delegate: LineButtonDelegate?
     
     private var type: ButtonLineType
     
-    override var isHighlighted: Bool {
+    public override var isHighlighted: Bool {
         didSet {
             if !self.isHighlighted {
                 self.delegate?.lineButtonUnHighlighted()
@@ -57,7 +57,7 @@ class LineButton: UIButton {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func edgeLine(_ color: UIColor?) {
+    public func edgeLine(_ color: UIColor?) {
         self.setImage(self.type.view(color)?.imageWithView?.withRenderingMode(.alwaysOriginal), for: .normal)
     }
 }

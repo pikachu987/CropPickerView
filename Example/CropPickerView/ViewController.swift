@@ -11,7 +11,7 @@ import CropPickerView
 
 class ViewController: UIViewController {
     private let cropPickerView: CropPickerView = {
-        let cropPickerView = CropPickerView()
+        let cropPickerView = CropPickerView(isSquare: true)
         cropPickerView.translatesAutoresizingMaskIntoConstraints = false
         cropPickerView.backgroundColor = .black
         return cropPickerView
