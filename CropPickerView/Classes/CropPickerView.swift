@@ -465,7 +465,6 @@ public class CropPickerView: UIView {
             self.delegate?.cropPickerView(self, result: cropResult)
         }
     }
-    
 }
 
 // MARK: Private Method Init
@@ -585,6 +584,13 @@ extension CropPickerView {
         self.centerButton.addTarget(self, action: #selector(self.centerDoubleTap(_:)), for: .touchDownRepeat)
         self.centerButton.addTarget(self, action: #selector(self.cropButtonCenterDrag(_:forEvent:)), for: .touchDragInside)
         
+        if self.isSquare {
+            self.topButton.isHidden = true
+            self.leftButton.isHidden = true
+            self.bottomButton.isHidden = true
+            self.rightButton.isHidden = true
+        }
+        
         self.layoutIfNeeded()
     }
     
@@ -637,6 +643,7 @@ extension CropPickerView {
             .forEach { $0.isUserInteractionEnabled = false }
     }
     
+    
     // Touch Up Inside Button
     @objc private func cropButtonTouchUpInside(_ sender: LineButton, forEvent event: UIEvent) {
         self.lineButtonTouchPoint = nil
@@ -663,25 +670,20 @@ extension CropPickerView {
         let vConstant = cropTopConstraint.constant - (currentPoint.y - touchPoint.y)
         
         if self.isSquare {
-            print("currentPoint: \(currentPoint), touchPoint: \(touchPoint)")
-            if currentPoint.x - touchPoint.x < currentPoint.y - touchPoint.y {
-                
+            if currentPoint.x - touchPoint.x > currentPoint.y - touchPoint.y {
                 let width = self.bounds.width + hConstant - (self.cropTrailingConstraint?.constant ?? 0)
-                let constant = self.bounds.height - (self.cropBottomConstraint?.constant ?? 0) - width
-                
-                self.cropLeadingConstraint?.constant = hConstant
-                self.cropTopConstraint?.constant = -constant
-                
-                
-                if (hConstant <= 0 || currentPoint.x - touchPoint.x > 0) && self.bounds.width + (hConstant - cropTrailingConstraint.constant) > self.cropMinSize {
-                    
+                let vConstant = self.bounds.height - (self.cropBottomConstraint?.constant ?? 0) - width
+                if (-hConstant) >= 0 && vConstant >= 0 {
+                    self.cropLeadingConstraint?.constant = hConstant
+                    self.cropTopConstraint?.constant = -vConstant
                 }
             } else {
                 let height = self.bounds.height + vConstant - (self.cropBottomConstraint?.constant ?? 0)
-                let constant = self.bounds.width - (self.cropTrailingConstraint?.constant ?? 0) - height
-                
-                self.cropTopConstraint?.constant = vConstant
-                self.cropLeadingConstraint?.constant = -constant
+                let hConstant = self.bounds.width - (self.cropTrailingConstraint?.constant ?? 0) - height
+                if hConstant >= 0 && (-vConstant) >= 0 {
+                    self.cropTopConstraint?.constant = vConstant
+                    self.cropLeadingConstraint?.constant = -hConstant
+                }
             }
         } else {
             if (hConstant <= 0 || currentPoint.x - touchPoint.x > 0) && self.bounds.width + (hConstant - cropTrailingConstraint.constant) > self.cropMinSize {
@@ -707,11 +709,31 @@ extension CropPickerView {
         let hConstant = cropLeadingConstraint.constant - (currentPoint.x - touchPoint.x)
         let vConstant = cropBottomConstraint.constant - (currentPoint.y - touchPoint.y)
         
-        if (hConstant <= 0 || currentPoint.x - touchPoint.x > 0) && self.bounds.width + (hConstant - cropTrailingConstraint.constant) > self.cropMinSize {
-            self.cropLeadingConstraint?.constant = hConstant
-        }
-        if (vConstant > 0 || currentPoint.y - touchPoint.y < 0) && self.bounds.height - (vConstant - cropTopConstraint.constant) > self.cropMinSize {
-            self.cropBottomConstraint?.constant = vConstant
+        if self.isSquare {
+//            print("currentPoint.x - touchPoint.x: \(currentPoint.x - touchPoint.x), currentPoint.y - touchPoint.y: \(currentPoint.y - touchPoint.y)")
+            if currentPoint.x - touchPoint.x < -(currentPoint.y - touchPoint.y) {
+                let width = self.bounds.width + hConstant - (self.cropTrailingConstraint?.constant ?? 0)
+                let vConstant = self.bounds.height + (self.cropTopConstraint?.constant ?? 0) - width
+                print("hConstant: \(hConstant), vConstant: \(vConstant)")
+//                if (-hConstant) >= 0 && (-vConstant) >= 0 {
+                    self.cropLeadingConstraint?.constant = hConstant
+                    self.cropBottomConstraint?.constant = vConstant
+//                }
+            } else {
+//                let height = self.bounds.height + vConstant - (self.cropBottomConstraint?.constant ?? 0)
+//                let hConstant = self.bounds.width - (self.cropTrailingConstraint?.constant ?? 0) - height
+//                if hConstant >= 0 && (-vConstant) >= 0 {
+//                    self.cropTopConstraint?.constant = vConstant
+//                    self.cropLeadingConstraint?.constant = -hConstant
+//                }
+            }
+        } else {
+            if (hConstant <= 0 || currentPoint.x - touchPoint.x > 0) && self.bounds.width + (hConstant - cropTrailingConstraint.constant) > self.cropMinSize {
+                self.cropLeadingConstraint?.constant = hConstant
+            }
+            if (vConstant > 0 || currentPoint.y - touchPoint.y < 0) && self.bounds.height - (vConstant - cropTopConstraint.constant) > self.cropMinSize {
+                self.cropBottomConstraint?.constant = vConstant
+            }
         }
         self.dimLayerMask(animated: false)
     }

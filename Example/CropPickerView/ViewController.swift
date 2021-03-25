@@ -63,7 +63,7 @@ class ViewController: UIViewController {
         ])
         
         self.cropPickerView.addConstraints([
-            NSLayoutConstraint(item: self.cropPickerView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1, constant: 200)
+            NSLayoutConstraint(item: self.cropPickerView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1, constant: 600)
         ])
         
         self.view.addConstraints([
@@ -177,7 +177,7 @@ extension ViewController: CropPickerViewDelegate {
     }
 
     func cropPickerView(_ cropPickerView: CropPickerView, didChange frame: CGRect) {
-        print("frame: \(frame)")
+//        print("frame: \(frame)")
     }
 }
 
