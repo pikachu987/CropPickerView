@@ -253,6 +253,7 @@ public class CropPickerView: UIView {
     private var cropBottomConstraint: NSLayoutConstraint?
     
     private var lineButtonTouchPoint: CGPoint?
+    private var lineButtonDragPoint: CGPoint?
     
     public var isSquare: Bool = false
     
@@ -636,6 +637,7 @@ extension CropPickerView {
     @objc private func cropButtonTouchDown(_ sender: LineButton, forEvent event: UIEvent) {
         guard let touch = event.touches(for: sender)?.first else { return }
         self.lineButtonTouchPoint = touch.location(in: self.cropView)
+        self.lineButtonDragPoint = touch.location(in: self)
         self.cropView.line(false, animated: true)
         self.dimLayerMask(animated: false)
         self.lineButtonGroup
@@ -647,6 +649,7 @@ extension CropPickerView {
     // Touch Up Inside Button
     @objc private func cropButtonTouchUpInside(_ sender: LineButton, forEvent event: UIEvent) {
         self.lineButtonTouchPoint = nil
+        self.lineButtonDragPoint = nil
         self.cropView.line(true, animated: true)
         self.dimLayerMask(animated: false)
         self.lineButtonGroup
@@ -670,8 +673,17 @@ extension CropPickerView {
         let vConstant = cropTopConstraint.constant - (currentPoint.y - touchPoint.y)
         
         if self.isSquare {
-            if currentPoint.x - touchPoint.x > currentPoint.y - touchPoint.y {
+            let lineButtonDragPoint = event.touches(for: sender)?.first?.location(in: self)
+            
+            let xMargin = (self.lineButtonDragPoint?.x ?? 0) - (lineButtonDragPoint?.x ?? 0)
+            let yMargin = (self.lineButtonDragPoint?.y ?? 0) - (lineButtonDragPoint?.y ?? 0)
+            
+            if abs(xMargin) - abs(yMargin) > 1 {
+                return
+            }
+            if abs(xMargin) > abs(yMargin) {
                 let width = self.bounds.width + hConstant - (self.cropTrailingConstraint?.constant ?? 0)
+                print("1: \(width), hConstant: \(hConstant), vConstant: \(vConstant),, aaa: \(self.cropView.frame)")
                 let vConstant = self.bounds.height - (self.cropBottomConstraint?.constant ?? 0) - width
                 if (-hConstant) >= 0 && vConstant >= 0 {
                     self.cropLeadingConstraint?.constant = hConstant
@@ -679,12 +691,20 @@ extension CropPickerView {
                 }
             } else {
                 let height = self.bounds.height + vConstant - (self.cropBottomConstraint?.constant ?? 0)
+                print("2: \(height), hConstant: \(hConstant), vConstant: \(vConstant),, aaa: \(self.cropView.frame)")
                 let hConstant = self.bounds.width - (self.cropTrailingConstraint?.constant ?? 0) - height
                 if hConstant >= 0 && (-vConstant) >= 0 {
                     self.cropTopConstraint?.constant = vConstant
                     self.cropLeadingConstraint?.constant = -hConstant
                 }
             }
+            
+//            if currentPoint.x - touchPoint.x > currentPoint.y - touchPoint.y {
+//
+//            } else {
+//
+//            }
+            self.lineButtonDragPoint = lineButtonDragPoint
         } else {
             if (hConstant <= 0 || currentPoint.x - touchPoint.x > 0) && self.bounds.width + (hConstant - cropTrailingConstraint.constant) > self.cropMinSize {
                 self.cropLeadingConstraint?.constant = hConstant
@@ -710,6 +730,8 @@ extension CropPickerView {
         let vConstant = cropBottomConstraint.constant - (currentPoint.y - touchPoint.y)
         
         if self.isSquare {
+            
+            
 //            print("currentPoint.x - touchPoint.x: \(currentPoint.x - touchPoint.x), currentPoint.y - touchPoint.y: \(currentPoint.y - touchPoint.y)")
             if currentPoint.x - touchPoint.x < -(currentPoint.y - touchPoint.y) {
                 let width = self.bounds.width + hConstant - (self.cropTrailingConstraint?.constant ?? 0)
