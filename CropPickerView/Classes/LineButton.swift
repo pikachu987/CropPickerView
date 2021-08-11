@@ -21,7 +21,7 @@
 import UIKit
 
 // Called when the button's highlighted is false.
-protocol LineButtonDelegate: class {
+protocol LineButtonDelegate: AnyObject {
     func lineButtonUnHighlighted()
 }
 
@@ -33,8 +33,8 @@ public class LineButton: UIButton {
     
     public override var isHighlighted: Bool {
         didSet {
-            if !self.isHighlighted {
-                self.delegate?.lineButtonUnHighlighted()
+            if !isHighlighted {
+                delegate?.lineButtonUnHighlighted()
             }
         }
     }
@@ -44,12 +44,12 @@ public class LineButton: UIButton {
         self.type = type
         super.init(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
         
-        self.setTitle(nil, for: .normal)
-        self.translatesAutoresizingMaskIntoConstraints = false
+        setTitle(nil, for: .normal)
+        translatesAutoresizingMaskIntoConstraints = false
         if type != .center {
-            self.widthConstraint(constant: 50)
-            self.heightConstraint(constant: 50)
-            self.alpha = 0
+            widthConstraint(constant: 50)
+            heightConstraint(constant: 50)
+            alpha = 0
         }
     }
     
@@ -58,7 +58,7 @@ public class LineButton: UIButton {
     }
     
     public func edgeLine(_ color: UIColor?) {
-        self.setImage(self.type.view(color)?.imageWithView?.withRenderingMode(.alwaysOriginal), for: .normal)
+        setImage(type.view(color)?.imageWithView?.withRenderingMode(.alwaysOriginal), for: .normal)
     }
 }
 
@@ -133,11 +133,11 @@ enum ButtonLineType {
         func apply(_ path: UIBezierPath) {
             var pathTransform  = CGAffineTransform.identity
             pathTransform = pathTransform.translatedBy(x: 25, y: 25)
-            pathTransform = pathTransform.rotated(by: self.type.rotate)
-            pathTransform = pathTransform.translatedBy(x: -25 - self.type.xMargin, y: -25 - self.type.yMargin)
+            pathTransform = pathTransform.rotated(by: type.rotate)
+            pathTransform = pathTransform.translatedBy(x: -25 - type.xMargin, y: -25 - type.yMargin)
             path.apply(pathTransform)
             path.closed()
-                .strokeFill(self.color ?? .white)
+                .strokeFill(color ?? .white)
         }
     }
     
@@ -151,7 +151,7 @@ enum ButtonLineType {
                 .line(20, 8)
                 .line(20, 6)
                 .line(6, 6)
-            self.apply(path)
+            apply(path)
         }
     }
     class SideView: LineView {
@@ -162,7 +162,7 @@ enum ButtonLineType {
                 .line(35, 8)
                 .line(15, 8)
                 .line(15, 6)
-            self.apply(path)
+            apply(path)
         }
     }
 }

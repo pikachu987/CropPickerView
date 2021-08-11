@@ -9,7 +9,7 @@ import UIKit
 
 extension NSLayoutConstraint {
     func priority(_ value: CGFloat) -> NSLayoutConstraint {
-        self.priority = UILayoutPriority(Float(value))
+        priority = UILayoutPriority(Float(value))
         return self
     }
 }

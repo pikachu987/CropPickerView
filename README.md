@@ -22,7 +22,7 @@ If you want to see the CropPickerViewController that is created with CropView, s
 |-|-|
 |---|---|
 |<img src='./img/result1.png' width='200px'>|<img src='./img/result2.png' width='200px'>|
-|<img src='./img/radius.png' width='200px'>|<img src='./img/square.png' width='200px'>|
+|<img src='./img/radius.png' width='200px'>|<img src='./img/aspect.png' width='200px'>|
 
 |-|-|
 |---|---|
@@ -115,11 +115,24 @@ cropPickerView.radius = 50
 
 ```
 
-square
+aspectRatio (~~square~~)
 
 ```swift
 
-cropPickerView.isSquare = true
+// free
+cropPickerView.aspectRatio = 0
+
+// square
+cropPickerView.aspectRatio = 1
+
+// width : height = 1 : 2
+cropPickerView.aspectRatio = 1 / 2
+
+// width : height = 3 : 4
+cropPickerView.aspectRatio = 3 / 4
+
+// width : height = 4 : 3
+cropPickerView.aspectRatio = 4 / 3
 
 ```
 

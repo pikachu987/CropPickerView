@@ -26,7 +26,7 @@ public class CropDimView: UIView {
     
     init() {
         super.init(frame: .zero)
-        self.isUserInteractionEnabled = false
+        isUserInteractionEnabled = false
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -35,7 +35,7 @@ public class CropDimView: UIView {
     
     func mask(_ path: CGPath, duration: TimeInterval, animated: Bool) {
         self.path = path
-        if let mask = self.layer.mask as? CAShapeLayer {
+        if let mask = layer.mask as? CAShapeLayer {
             mask.removeAllAnimations()
             if animated {
                 let animation = CABasicAnimation(keyPath: "path")
@@ -56,7 +56,7 @@ public class CropDimView: UIView {
             maskLayer.fillRule = CAShapeLayerFillRule.evenOdd
             maskLayer.backgroundColor = UIColor.clear.cgColor
             maskLayer.path = path
-            self.layer.mask = maskLayer
+            layer.mask = maskLayer
         }
     }
 }
@@ -64,8 +64,8 @@ public class CropDimView: UIView {
 // MARK: CAAnimationDelegate
 extension CropDimView: CAAnimationDelegate {
     public func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
-        guard let path = self.path else { return }
-        if let mask = self.layer.mask as? CAShapeLayer {
+        guard let path = path else { return }
+        if let mask = layer.mask as? CAShapeLayer {
             mask.removeAllAnimations()
             mask.path = path
         }

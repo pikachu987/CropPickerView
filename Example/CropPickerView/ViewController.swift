@@ -12,7 +12,7 @@ import CropPickerView
 class ViewController: UIViewController {
     @IBOutlet private weak var cropContainerView: UIView!
     @IBOutlet private weak var radianSlider: UISlider!
-    @IBOutlet private weak var squareSwitch: UISwitch!
+    @IBOutlet private weak var ratioSegment: UISegmentedControl!
 
     @IBOutlet private weak var resultImageView: UIImageView!
     @IBOutlet private weak var resultLabel: UILabel!
@@ -69,8 +69,18 @@ class ViewController: UIViewController {
         self.cropPickerView.radius = CGFloat(sender.value)
     }
 
-    @IBAction private func squareValueChanged(_ sender: UISwitch) {
-        self.cropPickerView.isSquare = sender.isOn
+    @IBAction private func ratioValueChanged(_ sender: UISegmentedControl) {
+        if sender.selectedSegmentIndex == 0 {
+            self.cropPickerView.aspectRatio = 0
+        } else if sender.selectedSegmentIndex == 1 {
+            self.cropPickerView.aspectRatio = 1
+        } else if sender.selectedSegmentIndex == 2 {
+            self.cropPickerView.aspectRatio = 1/2
+        } else if sender.selectedSegmentIndex == 3 {
+            self.cropPickerView.aspectRatio = 3/4
+        } else if sender.selectedSegmentIndex == 4 {
+            self.cropPickerView.aspectRatio = 4/3
+        }
     }
     
     @objc func cropTap(_ sender: UIBarButtonItem) {
