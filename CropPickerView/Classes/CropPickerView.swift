@@ -542,13 +542,19 @@ public class CropPickerView: UIView {
             cropResult.cropFrame = cropResultFrame
             cropResult.imageSize = imageResultSize
             
-            guard let cropImage = image.crop(cropArea, radius: self.radius, radiusScale: width / self.cropView.frame.size.width)?.fixOrientation else {
+//            guard let cropImage = image.crop(cropArea, radius: self.radius, radiusScale: width / self.cropView.frame.size.width)?.fixOrientation else {
+//                cropResult.error = NSError(domain: "There is no image in the Crop area.", code: 503, userInfo: nil)
+//                handler?(cropResult)
+//                self.delegate?.cropPickerView(self, result: cropResult)
+//                return
+//            }
+            
+            guard let cropImage = self.crop(image: image, rect: cropArea)?.fixOrientation else {
                 cropResult.error = NSError(domain: "There is no image in the Crop area.", code: 503, userInfo: nil)
                 handler?(cropResult)
                 self.delegate?.cropPickerView(self, result: cropResult)
                 return
             }
-            
             if image.cgImage?.cropping(to: cropArea) == nil {
                 cropResult.error = NSError(domain: "There is no image in the Crop area.", code: 503, userInfo: nil)
             }
@@ -557,6 +563,17 @@ public class CropPickerView: UIView {
             handler?(cropResult)
             self.delegate?.cropPickerView(self, result: cropResult)
         }
+    }
+    
+    private func crop(image: UIImage, rect: CGRect) -> UIImage? {
+        var rect = rect
+        rect.size.width = rect.size.width * image.scale
+        rect.size.height = rect.size.height * image.scale
+        
+        guard let imageRef = image.cgImage?.cropping(to: rect) else {
+            return nil
+        }
+        return UIImage(cgImage: imageRef)
     }
 }
 
