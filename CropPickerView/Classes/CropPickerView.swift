@@ -27,9 +27,7 @@ public protocol CropPickerViewDelegate: AnyObject {
     func cropPickerView(_ cropPickerView: CropPickerView, didChange frame: CGRect)
 }
 public extension CropPickerViewDelegate {
-    func cropPickerView(_ cropPickerView: CropPickerView, didChange frame: CGRect) {
-
-    }
+    func cropPickerView(_ cropPickerView: CropPickerView, didChange frame: CGRect) {}
 }
 
 @IBDesignable
@@ -43,13 +41,11 @@ public class CropPickerView: UIView {
     // Set Image
     @IBInspectable
     public var image: UIImage? {
-        get {
-            return imageView.image
-        }
+        get { imageView.image }
         set {
             imageView.image = newValue?.fixOrientation
             scrollView.setZoomScale(1, animated: false)
-            initVars()
+            setupViews()
             cropLineHidden(image)
             scrollView.layoutIfNeeded()
             dimLayerMask(animated: false)
@@ -62,20 +58,14 @@ public class CropPickerView: UIView {
     // Set Image
     @IBInspectable
     public var changeImage: UIImage? {
-        get {
-            return imageView.image
-        }
-        set {
-            imageView.image = newValue?.fixOrientation
-        }
+        get { imageView.image }
+        set { imageView.image = newValue?.fixOrientation }
     }
     
     // Line color of crop view
     @IBInspectable
     public var cropLineColor: UIColor? {
-        get {
-            return cropView.lineColor
-        }
+        get { cropView.lineColor }
         set {
             cropView.lineColor = newValue
             leftTopButton.edgeLine(newValue)
@@ -92,64 +82,42 @@ public class CropPickerView: UIView {
     // Background color of scroll
     @IBInspectable
     public var scrollBackgroundColor: UIColor? {
-        get {
-            return scrollView.backgroundColor
-        }
-        set {
-            scrollView.backgroundColor = newValue
-        }
+        get { scrollView.backgroundColor }
+        set { scrollView.backgroundColor = newValue }
     }
     
     // Background color of image
     @IBInspectable
     public var imageBackgroundColor: UIColor? {
-        get {
-            return imageView.backgroundColor
-        }
-        set {
-            imageView.backgroundColor = newValue
-        }
+        get { imageView.backgroundColor }
+        set { imageView.backgroundColor = newValue }
     }
     
     // Color of dim view not in the crop area
     @IBInspectable
     public var dimBackgroundColor: UIColor? {
-        get {
-            return dimView.backgroundColor
-        }
-        set {
-            dimView.backgroundColor = newValue
-        }
+        get { dimView.backgroundColor }
+        set { dimView.backgroundColor = newValue }
     }
     
     // Minimum zoom for scrolling
     @IBInspectable
     public var scrollMinimumZoomScale: CGFloat {
-        get {
-            return scrollView.minimumZoomScale
-        }
-        set {
-            scrollView.minimumZoomScale = newValue
-        }
+        get { scrollView.minimumZoomScale }
+        set { scrollView.minimumZoomScale = newValue }
     }
     
     // Maximum zoom for scrolling
     @IBInspectable
     public var scrollMaximumZoomScale: CGFloat {
-        get {
-            return scrollView.maximumZoomScale
-        }
-        set {
-            scrollView.maximumZoomScale = newValue
-        }
+        get { scrollView.maximumZoomScale }
+        set { scrollView.maximumZoomScale = newValue }
     }
 
     // crop radius
     @IBInspectable
     public var radius: CGFloat = 0 {
-        didSet {
-            dimLayerMask(animated: false)
-        }
+        didSet { dimLayerMask(animated: false) }
     }
 
     // If false, the cropview and dimview will disappear and only the view will be zoomed in or out.
@@ -166,6 +134,12 @@ public class CropPickerView: UIView {
             centerButton.isHidden = !newValue
             dimView.isHidden = !newValue
             cropView.isHidden = !newValue
+        }
+    }
+
+    public var isTransparent: Bool = false {
+        didSet {
+            transparentView.isHidden = !isTransparent
         }
     }
 
@@ -219,110 +193,104 @@ public class CropPickerView: UIView {
             }
         }
     }
-
-    // MARK: Private Property
     
     public let scrollView: UIScrollView = {
-        let scrollView = UIScrollView()
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.alpha = 1
-        return scrollView
-    }()
-    
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.alpha = 1
+        return $0
+    }(UIScrollView())
+
     public let imageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        return imageView
-    }()
-    
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        return $0
+    }(UIImageView())
+
     public let dimView: CropDimView = {
-        let view = CropDimView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.alpha = 1
-        return view
-    }()
-    
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.alpha = 1
+        return $0
+    }(CropDimView())
+
     public let cropView: CropView = {
-        let cropView = CropView()
-        cropView.translatesAutoresizingMaskIntoConstraints = false
-        return cropView
-    }()
-    
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        return $0
+    }(CropView())
+
     // Side button and corner button of crop
     
     public let leftTopButton: LineButton = {
-        let button = LineButton(.leftTop)
-        return button
-    }()
-    
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        return $0
+    }(LineButton(.leftTop))
+
     public let leftBottomButton: LineButton = {
-        let button = LineButton(.leftBottom)
-        return button
-    }()
-    
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        return $0
+    }(LineButton(.leftBottom))
+
     public let rightTopButton: LineButton = {
-        let button = LineButton(.rightTop)
-        return button
-    }()
-    
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        return $0
+    }(LineButton(.rightTop))
+
     public let rightBottomButton: LineButton = {
-        let button = LineButton(.rightBottom)
-        return button
-    }()
-    
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        return $0
+    }(LineButton(.rightBottom))
+
     public let topButton: LineButton = {
-        let button = LineButton(.top)
-        return button
-    }()
-    
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        return $0
+    }(LineButton(.top))
+
     public let leftButton: LineButton = {
-        let button = LineButton(.left)
-        return button
-    }()
-    
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        return $0
+    }(LineButton(.left))
+
     public let rightButton: LineButton = {
-        let button = LineButton(.right)
-        return button
-    }()
-    
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        return $0
+    }(LineButton(.right))
+
     public let bottomButton: LineButton = {
-        let button = LineButton(.bottom)
-        return button
-    }()
-    
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        return $0
+    }(LineButton(.bottom))
+
     public let centerButton: LineButton = {
-        let button = LineButton(.center)
-        return button
-    }()
-    
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        return $0
+    }(LineButton(.center))
+
+    private lazy var transparentView: TransparentView = {
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.isHidden = !isTransparent
+        return $0
+    }(TransparentView())
+
     private var cropLeadingConstraint: NSLayoutConstraint?
-    
     private var cropTrailingConstraint: NSLayoutConstraint?
-    
     private var cropTopConstraint: NSLayoutConstraint?
-    
     private var cropBottomConstraint: NSLayoutConstraint?
-    
     private var lineButtonTouchPoint: CGPoint?
     
-    private var isInit = false
-    
-    private var isRate: Bool {
-        return aspectRatio != 0
-    }
-    
+    private var isSetup = false
+
+    private var isRate: Bool { aspectRatio != 0 }
+
     // MARK: Init
     
     public override func awakeFromNib() {
         super.awakeFromNib()
         
-        initVars()
+        setupViews()
     }
     
     public override init(frame: CGRect = .zero) {
         super.init(frame: frame)
         
-        initVars()
+        setupViews()
     }
     
     public required init?(coder aDecoder: NSCoder) {
@@ -405,7 +373,7 @@ public class CropPickerView: UIView {
         } else {
             imageRealSize(false)
         }
-        initVars()
+        setupViews()
         cropLineHidden(image)
         scrollView.layoutIfNeeded()
         dimLayerMask(animated: false)
@@ -542,7 +510,7 @@ public class CropPickerView: UIView {
             cropResult.cropFrame = cropResultFrame
             cropResult.imageSize = imageResultSize
             
-            guard let cropImage = image.crop(cropArea, radius: self.radius, radiusScale: width / self.cropView.frame.size.width)?.fixOrientation else {
+            guard let cropImage = image.crop(cropArea, isTransparent: self.isTransparent, radius: self.radius, radiusScale: width / self.cropView.frame.size.width)?.fixOrientation else {
                 cropResult.error = NSError(domain: "There is no image in the Crop area.", code: 503, userInfo: nil)
                 handler?(cropResult)
                 self.delegate?.cropPickerView(self, result: cropResult)
@@ -568,9 +536,12 @@ extension CropPickerView {
     }
     
     // Init
-    private func initVars() {
-        if isInit { return }
-        isInit = true
+    private func setupViews() {
+        if isSetup { return }
+        isSetup = true
+        backgroundColor = .clear
+
+        addSubview(transparentView)
         addSubview(scrollView)
         addSubview(cropView)
         addSubview(dimView)
@@ -585,6 +556,7 @@ extension CropPickerView {
         addSubview(centerButton)
         scrollView.addSubview(imageView)
         
+        edgesConstraint(subView: transparentView)
         edgesConstraint(subView: scrollView)
         
         scrollView.edgesConstraint(subView: imageView)
@@ -651,8 +623,9 @@ extension CropPickerView {
         cropLineColor = cropLineColor ?? .white
         scrollMinimumZoomScale = 0.3
         scrollMaximumZoomScale = 5
-        scrollBackgroundColor = scrollBackgroundColor ?? .black
-        imageBackgroundColor = imageBackgroundColor ?? .black
+        scrollView.backgroundColor = .clear
+        scrollBackgroundColor = scrollBackgroundColor ?? .clear
+        imageBackgroundColor = imageBackgroundColor ?? .clear
         dimBackgroundColor = dimBackgroundColor ?? UIColor(white: 0, alpha: 0.6)
         
         let doubleTapGesture = UITapGestureRecognizer(target: self, action: #selector(imageDoubleTap(_:)))
@@ -1111,6 +1084,6 @@ extension CropPickerView: UIScrollViewDelegate {
     }
 
     public func viewForZooming(in scrollView: UIScrollView) -> UIView? {
-        return imageView
+        imageView
     }
 }

@@ -72,8 +72,8 @@ extension UIImage {
         return UIImage(cgImage: makeImage)
     }
 
-    func crop(_ rect: CGRect, radius: CGFloat, radiusScale: CGFloat, scale: CGFloat = 1) -> UIImage? {
-        UIGraphicsBeginImageContextWithOptions(CGSize(width: rect.size.width / scale, height: rect.size.height / scale), true, 0.0)
+    func crop(_ rect: CGRect, isTransparent: Bool, radius: CGFloat, radiusScale: CGFloat, scale: CGFloat = 1) -> UIImage? {
+        UIGraphicsBeginImageContextWithOptions(CGSize(width: rect.size.width / scale, height: rect.size.height / scale), !isTransparent, 0.0)
         draw(at: CGPoint(x: -rect.origin.x / scale, y: -rect.origin.y / scale))
         let croppedImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()

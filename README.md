@@ -144,6 +144,14 @@ cropPickerView.cropMinSize = 200
 
 ```
 
+isTransparent
+
+```swift
+
+cropPickerView.isTransparent = true
+
+```
+
 <br><br>
 
 ### Method
